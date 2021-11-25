@@ -1,0 +1,23 @@
+
+<div class="add-payment-type-button-div">
+  <button nz-button (click)="handleAddPaymentTypeModal()" nzType="primary"><em nz-icon nzType="plus"></em></button>
+</div>
+<nz-table #paymentTypeTable [nzData]="paymentTypes">
+    <thead>
+      <tr>
+        <th>Tipos de pagamento</th>
+        <th nzAlign="right">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of paymentTypeTable.data">
+        <td><em nz-icon nzType="credit-card"></em> {{ data.name }}</td>
+        <td nzAlign="right">
+          <a (click)="showDeleteConfirm(data)"><em nz-icon nzType="delete"></em></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="updatePaymentType(data)"><em nz-icon nzType="edit"></em></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <app-add-payment-type-modal [isVisibleMiddle]="isAddModalOpen" (response)="addPaymentType($event)"></app-add-payment-type-modal>
