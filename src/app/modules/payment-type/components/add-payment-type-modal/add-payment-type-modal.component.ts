@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-payment-type-modal.component.less']
 })
 export class AddPaymentTypeModalComponent {
-  @Input() isVisibleMiddle: boolean;
+  @Input() isVisible: boolean;
   @Output() response = new EventEmitter();
   addPaymentTypeForm: FormGroup;
 
@@ -15,28 +15,29 @@ export class AddPaymentTypeModalComponent {
     private readonly formBuilder: FormBuilder
   ) {
     this.createForm();
-   }
-  createForm(): void {
+  }
+  createForm (): void {
     this.addPaymentTypeForm = this.formBuilder.group({
       name: ['', Validators.required]
     })
   }
-  showModalMiddle(): void {
-    this.isVisibleMiddle = true;
-  }
-  handleOkMiddle(): void {
-    console.log('click ok');
-    if(this.addPaymentTypeForm.valid){
-      this.response.emit(this.addPaymentTypeForm.value)
-      this.addPaymentTypeForm.setValue({
-        name: ''
-      })
-    }else {
-      this.isVisibleMiddle = true;
-    }
 
+  handleOk(): void {
+    if (this.addPaymentTypeForm.valid) {
+      this.response.emit(this.addPaymentTypeForm.value)
+      this.addPaymentTypeForm.reset();
+      this.isVisible = false;
+    } else {
+      this.isVisible = true;
+    }
   }
-  handleCancelMiddle(): void {
-    this.isVisibleMiddle = false;
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
+
+  handleModalOpenStatus(): void {
+    this.isVisible = !this.isVisible;
+  }
+
 }

@@ -32,16 +32,11 @@ export class PaymentTypeTableComponent {
   }
 
   public addPaymentType(paymentTypeRequest: IPaymentTypeRequest): void {
-    this.handleAddPaymentTypeModal();
     this.paymentTypeService.addPaymentType(paymentTypeRequest).subscribe(() => this.getPaymentTypes());
   }
 
   public updatePaymentType(paymentTypeResponse: IPaymentTypeResponse): void {
     this.paymentTypeService.updatePaymentType(paymentTypeResponse).subscribe(() => this.getPaymentTypes());
-  }
-
-  handleAddPaymentTypeModal(): void {
-    this.isAddModalOpen = !this.isAddModalOpen
   }
 
   showDeleteConfirm(paymentTypeResponse: IPaymentTypeResponse): void {
