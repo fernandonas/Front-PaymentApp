@@ -2,22 +2,25 @@
 <div class="add-payment-type-button-div">
   <button nz-button (click)="addPaymentModal.handleModalOpenStatus()" nzType="primary"><em nz-icon nzType="plus"></em></button>
 </div>
+<nz-spin [nzSpinning]="loading" nzTip="Carregando...">
 <nz-table #paymentTypeTable [nzData]="paymentTypes">
-    <thead>
-      <tr>
-        <th>Tipos de pagamento</th>
-        <th nzAlign="right">Ações</th>
-      </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>Tipos de pagamento</th>
+      <th nzAlign="right">Ações</th>
+    </tr>
+  </thead>
     <tbody>
       <tr *ngFor="let paymentType of paymentTypeTable.data">
         <td><em nz-icon nzType="credit-card"></em> {{ paymentType.name }}</td>
         <td nzAlign="right">
-          <a (click)="showDeleteConfirm(paymentType)"><em nz-icon nzType="delete"></em></a>
+          <a (click)="showDeleteConfirm(paymentType)"><em class="red" nz-icon nzType="delete"></em></a>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="updatePaymentType(paymentType)"><em nz-icon nzType="edit"></em></a>
+          <a (click)="updatePaymentModal.handleModalOpenStatus(paymentType)"><em nz-icon nzType="edit"></em></a>
         </td>
       </tr>
     </tbody>
   </nz-table>
-  <app-add-payment-type-modal #addPaymentModal (response)="addPaymentType($event)"></app-add-payment-type-modal>
+</nz-spin>
+  <app-add-payment-type-modal #addPaymentModal (response)="getPaymentTypes()"></app-add-payment-type-modal>
+  <app-update-payment-type #updatePaymentModal (response)="getPaymentTypes()"></app-update-payment-type>

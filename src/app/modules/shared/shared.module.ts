@@ -13,6 +13,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzDividerModule,
     NzModalModule,
     NzButtonModule,
-    NzInputModule
+    NzInputModule,
+    NzSpinModule
   ]
 })
 export class SharedModule { }

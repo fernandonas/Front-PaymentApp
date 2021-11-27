@@ -29,6 +29,6 @@ export class PaymentTypeService {
   }
 
   updatePaymentType(paymentTypeResponse: IPaymentTypeResponse): Observable<any>{
-    return this.httpClient.put<any>('https://localhost:5001/api/paymentType', paymentTypeResponse);
+    return this.httpClient.put<any>(`https://localhost:5001/api/paymentType/${paymentTypeResponse.id}`, paymentTypeResponse);
   }
 }

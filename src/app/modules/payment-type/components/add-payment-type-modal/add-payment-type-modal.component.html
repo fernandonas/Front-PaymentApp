@@ -1,14 +1,14 @@
 <nz-modal
-      [(nzVisible)]="isVisible"
-      nzTitle="Adicionar novo método de pagamento!"
-      nzCentered
-      (nzOnCancel)="handleCancel()"
-      (nzOnOk)="handleOk()"
-    >
-      <ng-container *nzModalContent>
-          <form [formGroup]="addPaymentTypeForm">
-            <label>Nome:</label>
-            <input nz-input formControlName="name">
-          </form>
-      </ng-container>
-    </nz-modal>
+  [(nzVisible)]="isVisible"
+  nzTitle="Adicionar novo método de pagamento!"
+  nzCentered
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form [formGroup]="addPaymentTypeForm">
+      <label>Nome:</label>
+      <input nz-input formControlName="name">
+    </form>
+  </ng-container>
+</nz-modal>

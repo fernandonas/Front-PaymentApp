@@ -1,0 +1,17 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Atualizar método de pagamento"
+  nzCentered
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+<ng-container *nzModalContent>
+    <nz-spin [nzSpinning]="loading" nzTip="Atualizando...">
+      <form [formGroup]="updatePaymentTypeForm">
+        <label>Nome:</label>
+        <input  nz-input formControlName="name">
+        <span>{{ updatePaymentTypeForm.errors }}</span>
+      </form>
+    </nz-spin>
+  </ng-container>
+</nz-modal>
