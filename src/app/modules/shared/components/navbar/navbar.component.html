@@ -1,17 +1,17 @@
 <ul nz-menu nzMode="horizontal">
-  <li nz-menu-item nzSelected>
+  <li nz-menu-item [nzSelected]="true">
     <em nz-icon nzType="home"></em>
     <a routerLink="/">Home</a>
   </li>
-  <li nz-menu-item nzSelected>
+  <li nz-menu-item [nzSelected]="false">
     <em nz-icon nzType="credit-card"></em>
     <a routerLink="/payment-type">Métodos de Pagamento</a>
   </li>
-  <li nz-menu-item nzSelected>
+  <li nz-menu-item [nzSelected]="false">
     <em nz-icon nzType="bank"></em>
-    <a routerLink="/">Instituições Financeiras</a>
+    <a routerLink="/payment-instituition">Instituições Financeiras</a>
   </li>
-  <li nz-menu-item nzSelected>
+  <li nz-menu-item [nzSelected]="false">
     <em nz-icon nzType="barcode"></em>
     <a routerLink="/">Despesas</a>
   </li>

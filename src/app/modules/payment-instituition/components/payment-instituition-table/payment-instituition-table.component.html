@@ -1,0 +1,22 @@
+<nz-table #paymentInstituitionTable [nzData]="paymentInstituitions">
+    <thead>
+      <tr>
+        <th>Instituições Financeiras</th>
+        <th nzAlign="right">
+          <button nz-button (click)="addPaymentInstituitionModal.handleModalOpenStatus()" nzType="primary"><em nz-icon nzType="plus"></em></button>
+        </th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let paymentIntituition of paymentInstituitionTable.data">
+          <td><em nz-icon nzType="bank"></em> {{ paymentIntituition.name }}</td>
+          <td nzAlign="right">
+            <a (click)="showDeleteConfirm(paymentIntituition)"><em class="red" nz-icon nzType="delete"></em></a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="updatePaymentInstituitionModal.handleModalOpenStatus(paymentIntituition)"><em nz-icon nzType="edit"></em></a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <app-add-payment-instituition #addPaymentInstituitionModal (response)="getPaymentInstituitions()"></app-add-payment-instituition>
+    <app-update-payment-instituition #updatePaymentInstituitionModal (response)="getPaymentInstituitions()"></app-update-payment-instituition>

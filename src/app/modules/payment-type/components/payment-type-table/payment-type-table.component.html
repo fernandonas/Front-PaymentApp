@@ -1,13 +1,12 @@
 
-<div class="add-payment-type-button-div">
-  <button nz-button (click)="addPaymentModal.handleModalOpenStatus()" nzType="primary"><em nz-icon nzType="plus"></em></button>
-</div>
 <nz-spin [nzSpinning]="loading" nzTip="Carregando...">
 <nz-table #paymentTypeTable [nzData]="paymentTypes">
   <thead>
     <tr>
-      <th>Tipos de pagamento</th>
-      <th nzAlign="right">Ações</th>
+      <th>Métodos de Pagamento</th>
+      <th nzAlign="right">
+        <button nz-button (click)="addPaymentModal.handleModalOpenStatus()" nzType="primary"><em nz-icon nzType="plus"></em></button>
+      </th>
     </tr>
   </thead>
     <tbody>

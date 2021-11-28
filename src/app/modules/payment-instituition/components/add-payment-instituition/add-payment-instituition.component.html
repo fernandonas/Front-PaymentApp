@@ -1,0 +1,14 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Adicionar nova instituição financeira!"
+  nzCentered
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form [formGroup]="addPaymentInstituitionForm">
+      <label>Nome:</label>
+      <input nz-input formControlName="name">
+    </form>
+  </ng-container>
+</nz-modal>
