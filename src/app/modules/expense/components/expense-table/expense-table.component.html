@@ -1,0 +1,20 @@
+<nz-table #expense [nzData]="expenses">
+    <thead>
+      <tr>
+        <th>Despesas</th>
+        <th nzAlign="right">
+          Coluna
+        </th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let expense of expense.data">
+          <td><em nz-icon nzType="credit-card"></em> {{ expense }}</td>
+          <td nzAlign="right">
+            <a><em class="red" nz-icon nzType="delete"></em></a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a><em nz-icon nzType="edit"></em></a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
