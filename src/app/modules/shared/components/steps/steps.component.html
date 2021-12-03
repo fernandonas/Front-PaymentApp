@@ -1,0 +1,7 @@
+<nz-steps [nzCurrent]="step.getCurrentStep()" nzSize="small">
+    <nz-step *ngFor="let step of step.showSteps()" [nzTitle]="step"></nz-step>
+</nz-steps>
+
+<button (click)="step.addStep('Fernando')">Add</button>
+<button (click)="step.back()">back</button>
+<button (click)="step.next()">Next</button>
