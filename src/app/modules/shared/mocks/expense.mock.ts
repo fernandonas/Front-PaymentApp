@@ -5,7 +5,7 @@ import { PaymentInstituitionMock } from "./payment-instituition.mock";
 import { PaymentTypeDebitoMock } from "./payment-type.mock";
 
 export const ExpenseMock: IExpenseResponse = {
-    uuid: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaae',
+    id: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaae',
     name: 'Celular',
     purchaseDate: new Date('2021-12-10'),
     paymentDate: null,
@@ -14,7 +14,7 @@ export const ExpenseMock: IExpenseResponse = {
     expenseType: ExpenseType.Eletrônicos,
     expensePaymentStatus: PaymentStatus.Awaiting,
     installments: [{
-        uuid: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaao',
+        id: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaao',
         installment: '1',
         dateDue: new Date('2022-01-10'),
         paymentDate: new Date('2021-12-10'),
@@ -24,7 +24,7 @@ export const ExpenseMock: IExpenseResponse = {
         value: '90'
     },
     {
-        uuid: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaaU',
+        id: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaaU',
         installment: '2',
         dateDue: new Date('2022-02-10'),
         paymentDate: null,
