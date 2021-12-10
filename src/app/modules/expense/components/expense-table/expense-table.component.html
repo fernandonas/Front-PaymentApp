@@ -1,15 +1,21 @@
 <nz-table #expense [nzData]="expenses">
     <thead>
       <tr>
-        <th>Despesas</th>
-        <th nzAlign="right">
-          Coluna
+        <th id="1">Despesas</th>
+        <th id="2">Data da Compra</th>
+        <th id="3" nzAlign="right">Parcelas</th>
+        <th id="4" nzAlign="right">Status Pagamento</th>
+        <th id="5" nzAlign="right">
+          Ações
         </th>
       </tr>
     </thead>
       <tbody>
         <tr *ngFor="let expense of expense.data">
-          <td><em nz-icon nzType="credit-card"></em> {{ expense }}</td>
+          <td><em nz-icon nzType="barcode"></em> {{ expense.name }}</td>
+          <td>{{ expense.purchaseDate }}</td>
+          <td nzAlign="right">{{ expense.installments.length }} <em nz-icon nzType="eye"></em></td>
+          <td nzAlign="right">{{ expense.expensePaymentStatus }} <em nz-icon nzType="eye"></em></td>
           <td nzAlign="right">
             <a><em class="red" nz-icon nzType="delete"></em></a>
             <nz-divider nzType="vertical"></nz-divider>

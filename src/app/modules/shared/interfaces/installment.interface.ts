@@ -7,7 +7,7 @@ export interface IInstallmentRequest {
 }
 
 export interface IInstallmentResponse {
-  uuid: string;
+  id: string;
   installment: string;
   value: string;
   paymentDate: Date;

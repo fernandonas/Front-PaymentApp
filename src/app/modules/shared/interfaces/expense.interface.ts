@@ -7,7 +7,7 @@ export interface IExpenseRequest {
 }
 
 export interface IExpenseResponse {
-  uuid: string;
+  id: string;
   name: string;
   purchaseDate: Date;
   paymentDate: Date;

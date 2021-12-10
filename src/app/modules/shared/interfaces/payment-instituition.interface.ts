@@ -3,7 +3,7 @@ export interface IPaymentInstituitionRequest {
 }
 
 export interface IPaymentInstituitionResponse {
-    uuid: string;
+    id: string;
     active: boolean
     name: string
 }
