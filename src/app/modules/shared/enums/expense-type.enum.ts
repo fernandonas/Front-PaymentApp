@@ -6,5 +6,7 @@ export enum ExpenseType {
     Saúde,
     Lazer,
     Investimento,
-    Alimentação
+    Alimentação,
+    EletroDomesticos,
+    Eletrônicos
 }

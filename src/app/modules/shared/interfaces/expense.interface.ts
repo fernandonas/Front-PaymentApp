@@ -7,12 +7,13 @@ export interface IExpenseRequest {
 }
 
 export interface IExpenseResponse {
-  name: string,
-  dataLancamento: Date,
-  dataPagamento: Date,
-  valorTotal: string,
-  valorPago: string,
-  parcelas: IInstallmentResponse,
-  expensePaymentStatus: PaymentStatus,
-  tipoDeDespesa: ExpenseType
+  uuid: string;
+  name: string;
+  purchaseDate: Date;
+  paymentDate: Date;
+  amount: string;
+  amountPaid: string;
+  installments: IInstallmentResponse[];
+  expensePaymentStatus: PaymentStatus;
+  expenseType: ExpenseType;
 }

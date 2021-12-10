@@ -7,11 +7,12 @@ export interface IInstallmentRequest {
 }
 
 export interface IInstallmentResponse {
-  parcela: string;
-  valorparcela: string;
-  dataPagamento: Date;
-  dataVencimento: Date;
-  parcelaPaymentStatus: PaymentStatus;
+  uuid: string;
+  installment: string;
+  value: string;
+  paymentDate: Date;
+  dateDue: Date;
+  paymentStatus: PaymentStatus;
   paymentInstituition: IPaymentInstituitionResponse;
   paymentType: IPaymentTypeResponse;
 }
