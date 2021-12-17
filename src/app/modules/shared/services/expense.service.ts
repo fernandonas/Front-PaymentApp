@@ -17,7 +17,7 @@ export class ExpenseService {
     // return this.http.get<IExpenseResponse[]>('link');
     return new Observable<IExpenseResponse[]>(obsevable => {
       obsevable.next(
-        [ExpenseMock, ExpenseMock ]
+        [ExpenseMock, ExpenseMock]
       )
     })
   }

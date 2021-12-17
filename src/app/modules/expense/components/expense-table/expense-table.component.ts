@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ExpenseService } from 'src/app/modules/shared/services/expense.service';
 
@@ -7,7 +7,7 @@ import { ExpenseService } from 'src/app/modules/shared/services/expense.service'
   templateUrl: './expense-table.component.html',
   styleUrls: ['./expense-table.component.less']
 })
-export class ExpenseTableComponent implements OnInit {
+export class ExpenseTableComponent implements OnInit,OnDestroy {
 
   subscription: Subscription = new Subscription();
   //TODO
@@ -18,13 +18,16 @@ export class ExpenseTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.getExpenses();
+    this.getExpenses();
   }
   getExpenses(): void {
     this.subscription.add(this.expenseService.getExpenses().subscribe(
       response => {
         this.expenses = response;
       }
-    ))
+    ));
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

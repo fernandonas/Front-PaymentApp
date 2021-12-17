@@ -1,0 +1,9 @@
+<nz-modal
+      [(nzVisible)]="isVisible"
+      [nzTitle]="content.title"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()"
+      [nzOkLoading]="isOkLoading"
+    >
+      <p *nzModalContent>{{ content.content }}</p>
+    </nz-modal>

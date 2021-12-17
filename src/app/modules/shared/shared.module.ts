@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StepsComponent } from './components/steps/steps.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -17,10 +18,12 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
-    StepsComponent
+    StepsComponent,
+    ModalComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -52,7 +55,8 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzInputModule,
     NzSpinModule,
     StepsComponent,
-    NzStepsModule
+    NzStepsModule,
+    ModalComponent
   ]
 })
 export class SharedModule { }

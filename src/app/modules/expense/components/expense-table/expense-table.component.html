@@ -14,7 +14,7 @@
         <tr *ngFor="let expense of expense.data">
           <td><em nz-icon nzType="barcode"></em> {{ expense.name }}</td>
           <td>{{ expense.purchaseDate }}</td>
-          <td nzAlign="right">{{ expense.installments.length }} <em nz-icon nzType="eye"></em></td>
+          <td nzAlign="right">{{ expense.installments.length }} <em (click)="modal.openModal()" nz-icon nzType="eye"></em></td>
           <td nzAlign="right">{{ expense.expensePaymentStatus }} <em nz-icon nzType="eye"></em></td>
           <td nzAlign="right">
             <a><em class="red" nz-icon nzType="delete"></em></a>
@@ -24,3 +24,4 @@
         </tr>
       </tbody>
     </nz-table>
+    <app-modal #modal></app-modal>
