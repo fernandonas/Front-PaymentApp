@@ -5,12 +5,14 @@ import { ExpenseRoutingModule } from './expense-routing.module';
 import { ExpenseComponent } from './expense.component';
 import { SharedModule } from '../shared/shared.module';
 import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
+import { AddExpenseComponent } from './components/add-expense/add-expense.component';
 
 
 @NgModule({
   declarations: [
     ExpenseComponent,
-    ExpenseTableComponent],
+    ExpenseTableComponent,
+    AddExpenseComponent],
   imports: [
     CommonModule,
     ExpenseRoutingModule,
