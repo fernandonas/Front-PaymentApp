@@ -12,7 +12,8 @@ import { AddExpenseComponent } from './components/add-expense/add-expense.compon
   declarations: [
     ExpenseComponent,
     ExpenseTableComponent,
-    AddExpenseComponent],
+    AddExpenseComponent
+  ],
   imports: [
     CommonModule,
     ExpenseRoutingModule,

@@ -10,7 +10,12 @@ import { PaymentTypeComponent } from './page/payment-type.component';
 
 
 @NgModule({
-  declarations: [PaymentTypeComponent, PaymentTypeTableComponent, AddPaymentTypeModalComponent, UpdatePaymentTypeComponent],
+  declarations: [
+    PaymentTypeComponent,
+    PaymentTypeTableComponent,
+    AddPaymentTypeModalComponent,
+    UpdatePaymentTypeComponent
+  ],
   imports: [
     CommonModule,
     PaymentTypeRoutingModule,

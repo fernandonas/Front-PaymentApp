@@ -10,7 +10,12 @@ import { PaymentInstituitionComponent } from './page/payment-instituition.compon
 
 
 @NgModule({
-  declarations: [PaymentInstituitionComponent, PaymentInstituitionTableComponent, AddPaymentInstituitionComponent, UpdatePaymentInstituitionComponent],
+  declarations: [
+    PaymentInstituitionComponent,
+    PaymentInstituitionTableComponent,
+    AddPaymentInstituitionComponent,
+    UpdatePaymentInstituitionComponent
+  ],
   imports: [
     CommonModule,
     PaymentInstituitionRoutingModule,

@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
 
-
 registerLocaleData(pt);
 
 @NgModule({
