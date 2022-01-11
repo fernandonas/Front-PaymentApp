@@ -11,7 +11,7 @@ import { PaymentInstituitionService } from '@services/payment-instituition.servi
 
 export class AddPaymentInstituitionComponent {
   @Output() response = new EventEmitter();
-  isVisible: boolean;
+  isVisible = false;
   addPaymentInstituitionForm: FormGroup;
 
   constructor(
