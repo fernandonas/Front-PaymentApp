@@ -9,7 +9,7 @@ import { IModal } from '@interfaces/modal.interface';
   styleUrls: ['./expense-table.component.less']
 })
 
-export class ExpenseTableComponent implements OnInit,OnDestroy {
+export class ExpenseTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   expenses = [];
   content: IModal = {
@@ -24,8 +24,8 @@ export class ExpenseTableComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.getExpenses();
   }
-  
-  getExpenses(): void {
+
+  public getExpenses(): void {
     this.subscription.add(this.expenseService.getExpenses().subscribe(
       response => {
         this.expenses = response;
@@ -33,7 +33,7 @@ export class ExpenseTableComponent implements OnInit,OnDestroy {
     ));
   }
 
-  addExpense(): void {
+  public addExpense(): void {
     //Todo Adicionar método de adição de despesa.
   }
 
