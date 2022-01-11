@@ -1,1 +1,14 @@
-<p>add-expense works!</p>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Adicionar nova despesa!"
+  nzCentered
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form [formGroup]="addExpenseForm">
+      <label>Nome:</label>
+      <input nz-input formControlName="name">
+    </form>
+  </ng-container>
+</nz-modal>
