@@ -1,19 +1,19 @@
 export class LoaderHelper {
-    loading = false;
+    private loading = false;
 
-    enable(): void {
+    public enable(): void {
         this.loading = true;
     }
 
-    disable(): void {
+    public disable(): void {
         this.loading = false;
     }
 
-    handle(): void {
+    public handleLoader(): void {
         this.loading = !this.loading;
     }
 
-    status(): boolean {
+    public status(): boolean {
         return this.loading;
     }
 }

@@ -17,9 +17,8 @@ export class AddExpenseComponent {
   public handleOk(): void {
     if (this.addExpenseForm.valid) {
       //TODO Adicionar método para adicionar expense
-    } else {
-      this.isVisible = true;
     }
+    this.isVisible = true;
   }
 
   public handleCancel(): void {
