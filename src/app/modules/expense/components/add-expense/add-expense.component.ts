@@ -14,7 +14,7 @@ export class AddExpenseComponent {
   isVisible = false;
   addExpenseForm: FormGroup;
 
-  handleOk(): void {
+  public handleOk(): void {
     if (this.addExpenseForm.valid) {
       //TODO Adicionar método para adicionar expense
     } else {
@@ -22,11 +22,11 @@ export class AddExpenseComponent {
     }
   }
 
-  handleCancel(): void {
+  public handleCancel(): void {
     this.isVisible = false;
   }
 
-  handleModalOpenStatus(): void {
+  public handleModalOpenStatus(): void {
     this.isVisible = !this.isVisible;
   }
 }
