@@ -5,15 +5,15 @@
         <th id="2">Data da Compra</th>
         <th id="3" nzAlign="right">Parcelas</th>
         <th id="4" nzAlign="right">Status Pagamento</th>
-        <th id="5" nzAlign="right">
-          Ações
+        <th nzAlign="right">
+          <button nz-button nzType="primary"><em nz-icon nzType="plus"></em></button>
         </th>
       </tr>
     </thead>
       <tbody>
         <tr *ngFor="let expense of expense.data">
           <td><em nz-icon nzType="barcode"></em> {{ expense.name }}</td>
-          <td>{{ expense.purchaseDate }}</td>
+          <td>{{ expense.purchaseDate | date: 'dd-MM-yyyy' }}</td>
           <td nzAlign="right">{{ expense.installments.length }} <em (click)="modal.openModal()" nz-icon nzType="eye"></em></td>
           <td nzAlign="right">{{ expense.expensePaymentStatus }} <em nz-icon nzType="eye"></em></td>
           <td nzAlign="right">
@@ -25,4 +25,4 @@
       </tbody>
     </nz-table>
     <app-add-expense></app-add-expense>
-    <app-modal #modal></app-modal>
+    <app-modal [content]="content" #modal></app-modal>

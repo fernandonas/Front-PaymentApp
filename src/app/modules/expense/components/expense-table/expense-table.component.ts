@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { IModal } from 'src/app/modules/shared/components/modal/modal.component';
 import { ExpenseService } from 'src/app/modules/shared/services/expense.service';
 
 @Component({
@@ -12,6 +13,10 @@ export class ExpenseTableComponent implements OnInit,OnDestroy {
   subscription: Subscription = new Subscription();
   //TODO
   expenses = [];
+  content: IModal = {
+    content: "Texto",
+    title: "Título"
+  }
 
   constructor(
     private readonly expenseService: ExpenseService
@@ -27,6 +32,11 @@ export class ExpenseTableComponent implements OnInit,OnDestroy {
       }
     ));
   }
+
+  addExpense(): void {
+    //Todo Adicionar método de adição de despesa.
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
