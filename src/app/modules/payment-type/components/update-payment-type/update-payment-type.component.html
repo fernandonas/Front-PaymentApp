@@ -6,7 +6,7 @@
   (nzOnOk)="handleOk()"
 >
 <ng-container *nzModalContent>
-    <nz-spin [nzSpinning]="loading" nzTip="Atualizando...">
+    <nz-spin [nzSpinning]="loading.status()" nzTip="Atualizando...">
       <form [formGroup]="updatePaymentTypeForm">
         <label>Nome:</label>
         <input  nz-input formControlName="name">

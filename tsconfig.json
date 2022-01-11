@@ -19,7 +19,24 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@services/*": [
+        "./src/app/modules/shared/services/*"
+      ],
+      "@interfaces/*": [
+        "./src/app/modules/shared/interfaces/*"
+      ],
+      "@helpers/*": [
+        "./src/app/modules/shared/helpers/*"
+      ],
+      "@mocks/*": [
+        "./src/app/modules/shared/mocks/*"
+      ],
+      "@components/*": [
+        "./src/app/modules/shared/components/*"
+      ]
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,36 +1,30 @@
 import { Component, Input } from '@angular/core';
-
-export interface IModal {
-  title: string;
-  content: string;
-}
+import { IModal } from '@interfaces/modal.interface';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.less']
 })
+
 export class ModalComponent {
-
   @Input() content: IModal;
-
   isVisible = false;
   isOkLoading = false;
 
-  openModal(): void {
+  public openModal(): void {
     this.isVisible = true;
   }
 
-  closeModal(): void {
+  public closeModal(): void {
     this.isVisible = false;
   }
 
-  handleCancel(): void {
+  public handleCancel(): void {
     this.closeModal();
   }
 
-  handleOk(): void {
+  public handleOk(): void {
     this.closeModal();
   }
-
 }

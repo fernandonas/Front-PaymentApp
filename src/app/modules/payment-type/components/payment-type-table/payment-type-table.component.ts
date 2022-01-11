@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { IPaymentTypeResponse } from 'src/app/modules/shared/interfaces/payment-type.interface';
-import { PaymentTypeService } from 'src/app/modules/shared/services/payment-type.service';
+import { LoaderHelper } from '@helpers/loader.helper';
+import { PaymentTypeService } from '@services/payment-type.service';
+import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
 
 @Component({
   selector: 'app-payment-type-table',
   templateUrl: './payment-type-table.component.html',
   styleUrls: ['./payment-type-table.component.less']
 })
+
 export class PaymentTypeTableComponent {
   paymentTypes: IPaymentTypeResponse[] = [];
-  isAddModalOpen: boolean = false;
-
-  loading: boolean;
+  loading = new LoaderHelper();
+  isAddModalOpen = false;
 
   constructor(
     private readonly paymentTypeService: PaymentTypeService,
@@ -22,11 +23,11 @@ export class PaymentTypeTableComponent {
   }
 
   public getPaymentTypes(): void {
-    this.loading = true
+    this.loading.enable();
     this.paymentTypeService.getPaymentTypes().subscribe(
       paymentTypes => {
         this.paymentTypes = paymentTypes;
-        this.loading = false;
+        this.loading.disable();
       }
     )
   }

@@ -1,6 +1,6 @@
+import { IExpenseResponse } from "@interfaces/expense.interface";
 import { ExpenseType } from "../enums/expense-type.enum";
 import { PaymentStatus } from "../enums/payment-status.enum";
-import { IExpenseResponse } from "../interfaces/expense.interface";
 import { PaymentInstituitionMock } from "./payment-instituition.mock";
 import { PaymentTypeDebitoMock } from "./payment-type.mock";
 

@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPaymentInstituitionRequest } from 'src/app/modules/shared/interfaces/payment-instituition.interface';
-import { PaymentInstituitionService } from 'src/app/modules/shared/services/payment-instituition.service';
+import { IPaymentInstituitionRequest } from '@interfaces/payment-instituition.interface';
+import { PaymentInstituitionService } from '@services/payment-instituition.service';
 
 @Component({
   selector: 'app-add-payment-instituition',
   templateUrl: './add-payment-instituition.component.html',
   styleUrls: ['./add-payment-instituition.component.less']
 })
+
 export class AddPaymentInstituitionComponent {
-  isVisible: boolean;
   @Output() response = new EventEmitter();
+  isVisible: boolean;
   addPaymentInstituitionForm: FormGroup;
 
   constructor(
@@ -34,7 +35,7 @@ export class AddPaymentInstituitionComponent {
     });
   }
 
-  handleOk(): void {
+  public handleOk(): void {
     if (this.addPaymentInstituitionForm.valid) {
       this.addPaymentInstituition(this.addPaymentInstituitionForm.value);
     } else {
@@ -42,11 +43,11 @@ export class AddPaymentInstituitionComponent {
     }
   }
 
-  handleCancel(): void {
+  public handleCancel(): void {
     this.isVisible = false;
   }
 
-  handleModalOpenStatus(): void {
+  public handleModalOpenStatus(): void {
     this.isVisible = !this.isVisible;
   }
 }

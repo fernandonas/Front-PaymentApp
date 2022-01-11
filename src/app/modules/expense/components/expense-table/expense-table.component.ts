@@ -1,17 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IModal } from 'src/app/modules/shared/components/modal/modal.component';
-import { ExpenseService } from 'src/app/modules/shared/services/expense.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ExpenseService } from '@services/expense.service';
+import { IModal } from '@interfaces/modal.interface';
 
 @Component({
   selector: 'app-expense-table',
   templateUrl: './expense-table.component.html',
   styleUrls: ['./expense-table.component.less']
 })
-export class ExpenseTableComponent implements OnInit,OnDestroy {
 
+export class ExpenseTableComponent implements OnInit,OnDestroy {
   subscription: Subscription = new Subscription();
-  //TODO
   expenses = [];
   content: IModal = {
     content: "Texto",
@@ -25,6 +24,7 @@ export class ExpenseTableComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.getExpenses();
   }
+  
   getExpenses(): void {
     this.subscription.add(this.expenseService.getExpenses().subscribe(
       response => {

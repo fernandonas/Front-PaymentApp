@@ -1,4 +1,4 @@
-import { IPaymentInstituitionResponse } from "../interfaces/payment-instituition.interface";
+import { IPaymentInstituitionResponse } from "@interfaces/payment-instituition.interface";
 
 export const PaymentInstituitionMock: IPaymentInstituitionResponse = {
     active: true,

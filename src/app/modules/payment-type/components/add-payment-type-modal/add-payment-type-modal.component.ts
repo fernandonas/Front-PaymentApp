@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPaymentTypeRequest } from 'src/app/modules/shared/interfaces/payment-type.interface';
-import { PaymentTypeService } from 'src/app/modules/shared/services/payment-type.service';
+import { IPaymentTypeRequest } from '@interfaces/payment-type.interface';
+import { PaymentTypeService } from '@services/payment-type.service';
 
 @Component({
   selector: 'app-add-payment-type-modal',
   templateUrl: './add-payment-type-modal.component.html',
   styleUrls: ['./add-payment-type-modal.component.less']
 })
+
 export class AddPaymentTypeModalComponent {
-  isVisible: boolean;
   @Output() response = new EventEmitter();
+  isVisible = false;
   addPaymentTypeForm: FormGroup;
 
   constructor(
@@ -27,13 +28,14 @@ export class AddPaymentTypeModalComponent {
       this.isVisible = false;
     });
   }
-  createForm (): void {
+
+  private createForm(): void {
     this.addPaymentTypeForm = this.formBuilder.group({
       name: ['', Validators.required]
     })
   }
 
-  handleOk(): void {
+  public handleOk(): void {
     if (this.addPaymentTypeForm.valid) {
       this.addPaymentType(this.addPaymentTypeForm.value);
     } else {
@@ -41,11 +43,11 @@ export class AddPaymentTypeModalComponent {
     }
   }
 
-  handleCancel(): void {
+  public handleCancel(): void {
     this.isVisible = false;
   }
 
-  handleModalOpenStatus(): void {
+  public handleModalOpenStatus(): void {
     this.isVisible = !this.isVisible;
   }
 }

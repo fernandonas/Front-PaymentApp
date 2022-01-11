@@ -8,8 +8,7 @@ import { IStep, Step } from './stepHandler';
 })
 
 export class StepsComponent {
-
-  username: string = '';
+  username = '';
   step: IStep;
 
   constructor() {

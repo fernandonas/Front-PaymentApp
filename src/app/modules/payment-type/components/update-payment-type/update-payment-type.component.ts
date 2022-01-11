@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPaymentTypeResponse } from 'src/app/modules/shared/interfaces/payment-type.interface';
-import { PaymentTypeService } from 'src/app/modules/shared/services/payment-type.service';
+import { LoaderHelper } from '@helpers/loader.helper';
+import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
+import { PaymentTypeService } from '@services/payment-type.service';
 
 @Component({
   selector: 'app-update-payment-type',
@@ -11,9 +12,9 @@ import { PaymentTypeService } from 'src/app/modules/shared/services/payment-type
 })
 export class UpdatePaymentTypeComponent {
   @Output() response = new EventEmitter();
-  isVisible: boolean;
+  loading = new LoaderHelper();
+  isVisible = false;
   updatePaymentTypeForm: FormGroup;
-  loading: boolean = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -34,16 +35,16 @@ export class UpdatePaymentTypeComponent {
       this.response.emit()
       this.updatePaymentTypeForm.reset();
       this.isVisible = false;
-      this.loading = false;
+      this.loading.disable();
     },
     (error: HttpErrorResponse) => {
       this.updatePaymentTypeForm.setErrors(error.error.detailedMessage);
-      this.loading = false;
+      this.loading.disable();
     });
   }
 
-  handleOk(): void {
-    this.loading = true;
+  public handleOk(): void {
+    this.loading.enable();
     if (this.updatePaymentTypeForm.valid) {
       this.updatePaymentType(this.updatePaymentTypeForm.value);
     } else {
@@ -51,11 +52,11 @@ export class UpdatePaymentTypeComponent {
     }
   }
 
-  handleCancel(): void {
+  public handleCancel(): void {
     this.isVisible = false;
   }
 
-  handleModalOpenStatus(paymentTypeResponse: IPaymentTypeResponse): void {
+  public handleModalOpenStatus(paymentTypeResponse: IPaymentTypeResponse): void {
     this.updatePaymentTypeForm.setValue({
       name: paymentTypeResponse.name,
       id: paymentTypeResponse.id

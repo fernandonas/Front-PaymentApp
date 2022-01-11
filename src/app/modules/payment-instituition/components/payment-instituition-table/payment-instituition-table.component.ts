@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { IPaymentInstituitionResponse } from 'src/app/modules/shared/interfaces/payment-instituition.interface';
-import { PaymentInstituitionService } from 'src/app/modules/shared/services/payment-instituition.service';
+import { IPaymentInstituitionResponse } from '@interfaces/payment-instituition.interface';
+import { PaymentInstituitionService } from '@services/payment-instituition.service';
+import { LoaderHelper } from '@helpers/loader.helper';
 
 @Component({
   selector: 'app-payment-instituition-table',
   templateUrl: './payment-instituition-table.component.html',
   styleUrls: ['./payment-instituition-table.component.less']
 })
+
 export class PaymentInstituitionTableComponent {
   paymentInstituitions: IPaymentInstituitionResponse[];
-  loading: boolean;
+  loading = new LoaderHelper();
 
   constructor(
     private readonly paymentInstituitionService: PaymentInstituitionService,
@@ -24,16 +26,16 @@ export class PaymentInstituitionTableComponent {
   }
 
   public getPaymentInstituitions(): void {
-    this.loading = true
+    this.loading.enable();
     this.paymentInstituitionService.getPaymentInstituitions().subscribe(
       paymentTypes => {
         this.paymentInstituitions = paymentTypes;
-        this.loading = false;
+        this.loading.disable();
       }
     )
   }
 
-  showDeleteConfirm(paymentInstituitionResponse: IPaymentInstituitionResponse): void {
+  public showDeleteConfirm(paymentInstituitionResponse: IPaymentInstituitionResponse): void {
     this.modal.confirm({
       nzTitle: `Tem certeza que deseja deletar ${paymentInstituitionResponse.name}?`,
       nzContent: '',

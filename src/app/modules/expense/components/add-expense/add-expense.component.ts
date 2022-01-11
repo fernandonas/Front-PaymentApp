@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { LoaderHelper } from '@helpers/loader.helper';
+
 @Component({
   selector: 'app-add-expense',
   templateUrl: './add-expense.component.html',
@@ -8,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 
 export class AddExpenseComponent {
   @Output() response = new EventEmitter();
+  loading = new LoaderHelper();
   isVisible = false;
   addExpenseForm: FormGroup;
 
