@@ -8,30 +8,10 @@ export const ExpenseMock: IExpenseResponse = {
     id: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaae',
     name: 'Celular',
     purchaseDate: new Date('2021-12-10'),
-    paymentDate: null,
-    amount: '100',
-    amountPaid: '90',
+    amount: '100.50',
     expenseType: ExpenseType.Eletrônicos,
     expensePaymentStatus: PaymentStatus.Awaiting,
-    installments: [{
-        id: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaao',
-        installment: '1',
-        dateDue: new Date('2022-01-10'),
-        paymentDate: new Date('2021-12-10'),
-        paymentInstituition: PaymentInstituitionMock,
-        paymentType: PaymentTypeDebitoMock,
-        paymentStatus: PaymentStatus.Paid,
-        value: '90'
-    },
-    {
-        id: '88a063a6-8aa2-4cd8-bf79-4b00cedaaaaU',
-        installment: '2',
-        dateDue: new Date('2022-02-10'),
-        paymentDate: null,
-        paymentInstituition: PaymentInstituitionMock,
-        paymentType: PaymentTypeDebitoMock,
-        paymentStatus: PaymentStatus.Awaiting,
-        value: '10'
-    }
-    ]
+    paymentInstituition: PaymentInstituitionMock,
+    paymentType: PaymentTypeDebitoMock,
+    paymentStatus: PaymentStatus.Paid
 }

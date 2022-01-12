@@ -9,6 +9,18 @@
     <form [formGroup]="addExpenseForm">
       <label>Nome:</label>
       <input nz-input formControlName="name">
+      <label>Data da compra:</label>
+      <input nz-input formControlName="purchaseDate">
+      <label>Valor:</label>
+      <input nz-input formControlName="amount">
+      <label>Status pagamento:</label>
+      <input nz-input formControlName="expensePaymentStatus">
+      <label>Tipo de despesa:</label>
+      <input nz-input formControlName="expenseType">
+      <label>Intituição de pagamento:</label>
+      <input nz-input formControlName="paymentInstituitionId">
+      <label>Método de Pagamento:</label>
+      <input nz-input formControlName="paymentTypeId">
     </form>
   </ng-container>
 </nz-modal>

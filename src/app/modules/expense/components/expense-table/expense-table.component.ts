@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ExpenseService } from '@services/expense.service';
 import { IModal } from '@interfaces/modal.interface';
+import { IExpenseResponse } from '@interfaces/expense.interface';
 
 @Component({
   selector: 'app-expense-table',
@@ -11,7 +12,7 @@ import { IModal } from '@interfaces/modal.interface';
 
 export class ExpenseTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
-  expenses = [];
+  expenses: IExpenseResponse[] = [];
   content: IModal = {
     content: "Texto",
     title: "Título"
