@@ -7,7 +7,6 @@ export interface IExpenseRequest {
   name: string;
   purchaseDate: Date;
   amount: string;
-  expensePaymentStatus: PaymentStatus;
   expenseType: ExpenseType;
   paymentInstituitionId: string;
   paymentTypeId: string;
@@ -19,7 +18,6 @@ export interface IExpenseResponse {
   name: string;
   purchaseDate: Date;
   amount: string;
-  expensePaymentStatus: PaymentStatus;
   expenseType: ExpenseType;
   paymentInstituition: IPaymentInstituitionResponse;
   paymentType: IPaymentTypeResponse;

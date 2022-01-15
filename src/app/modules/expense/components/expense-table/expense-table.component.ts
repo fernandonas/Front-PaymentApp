@@ -34,6 +34,14 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
     ));
   }
 
+  public deleteExpense(expense: IExpenseResponse): void {
+    this.subscription.add(this.expenseService.deleteExpense(expense).subscribe(
+      () => {
+        this.getExpenses();
+      }
+    ));
+  }
+
   public addExpense(): void {
     //Todo Adicionar método de adição de despesa.
   }

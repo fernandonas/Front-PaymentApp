@@ -10,7 +10,6 @@ export const ExpenseMock: IExpenseResponse = {
     purchaseDate: new Date('2021-12-10'),
     amount: '100.50',
     expenseType: ExpenseType.Eletrônicos,
-    expensePaymentStatus: PaymentStatus.Awaiting,
     paymentInstituition: PaymentInstituitionMock,
     paymentType: PaymentTypeDebitoMock,
     paymentStatus: PaymentStatus.Paid

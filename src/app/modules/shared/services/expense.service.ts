@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IExpenseResponse } from '../interfaces/expense.interface';
-import { ExpenseMock } from '../mocks/expense.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +13,15 @@ export class ExpenseService {
   ) { }
 
   getExpenses(): Observable<IExpenseResponse[]> {
-    // return this.http.get<IExpenseResponse[]>('link');
-    return new Observable<IExpenseResponse[]>(obsevable => {
-      obsevable.next(
-        [ExpenseMock, ExpenseMock]
-      )
-    })
+    return this.http.get<IExpenseResponse[]>('https://localhost:5001/api/expense');
   }
+
+  deleteExpense(expense: IExpenseResponse): Observable<IExpenseResponse[]> {
+    return this.http.delete<IExpenseResponse[]>('https://localhost:5001/api/expense',{
+      params: {
+        id: expense.id
+      }
+    });
+  }
+
 }

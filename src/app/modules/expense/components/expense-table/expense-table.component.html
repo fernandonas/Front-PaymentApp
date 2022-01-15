@@ -24,7 +24,7 @@
       <td nzAlign="left">{{ expense.paymentType.name }}</td>
       <td nzAlign="left">{{ expense.paymentStatus.toString()}}</td>
       <td nzAlign="right">
-        <a><em class="red" nz-icon nzType="delete"></em></a>
+        <a (click)="deleteExpense(expense)"><em class="red" nz-icon nzType="delete"></em></a>
         <nz-divider nzType="vertical"></nz-divider>
         <a><em nz-icon nzType="edit"></em></a>
       </td>
