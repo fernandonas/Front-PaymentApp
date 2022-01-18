@@ -1,8 +1,12 @@
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ExpenseService } from '@services/expense.service';
 import { IModal } from '@interfaces/modal.interface';
 import { IExpenseResponse } from '@interfaces/expense.interface';
+import { FormGroup } from '@angular/forms';
+import { Expense } from '../../expense';
+import { PaymentStatus } from '../../../shared/enums/payment-status.enum';
+import { ExpenseType } from '../../../shared/enums/expense-type.enum';
 
 @Component({
   selector: 'app-expense-table',
@@ -12,7 +16,9 @@ import { IExpenseResponse } from '@interfaces/expense.interface';
 
 export class ExpenseTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
-  expenses: IExpenseResponse[] = [];
+  expenses$: Observable<IExpenseResponse[]>;
+  paymentStatusEnum = PaymentStatus;
+  expenseTypeEnum = ExpenseType;
   content: IModal = {
     content: "Texto",
     title: "Título"
@@ -26,12 +32,8 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
     this.getExpenses();
   }
 
-  public getExpenses(): void {
-    this.subscription.add(this.expenseService.getExpenses().subscribe(
-      response => {
-        this.expenses = response;
-      }
-    ));
+  getExpenses(): void {
+    this.expenses$ = this.expenseService.getExpenses();
   }
 
   public deleteExpense(expense: IExpenseResponse): void {
@@ -42,8 +44,21 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
     ));
   }
 
-  public addExpense(): void {
-    //Todo Adicionar método de adição de despesa.
+  public addExpensee(expenseForm: FormGroup): void {
+    console.log("Resultado: expenseForm", expenseForm.controls.name.value);
+    const expense = new Expense(
+      expenseForm.controls.name.value,
+      expenseForm.controls.purchaseDate.value,
+      expenseForm.controls.amount.value,
+      +expenseForm.controls.expenseType.value,
+      expenseForm.controls.paymentInstituitionId.value,
+      expenseForm.controls.paymentTypeId.value,
+      +expenseForm.controls.paymentStatus.value,
+      expenseForm.controls.paymentDate.value,
+      expenseForm.controls.dueDate.value
+    )
+    console.log("Resultado: expense", expense);
+    this.expenseService.addExpense(expense).subscribe(() => this.getExpenses())
   }
 
   ngOnDestroy(): void {

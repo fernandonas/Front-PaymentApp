@@ -17,6 +17,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzModalModule,
     NzButtonModule,
     NzInputModule,
-    NzStepsModule
+    NzStepsModule,
+    NzSelectModule,
+    NzDatePickerModule,
+    NzMessageModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -56,7 +62,10 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzSpinModule,
     StepsComponent,
     NzStepsModule,
-    ModalComponent
+    ModalComponent,
+    NzSelectModule,
+    NzDatePickerModule,
+    NzMessageModule
   ]
 })
 export class SharedModule { }

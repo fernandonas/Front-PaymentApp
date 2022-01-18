@@ -10,7 +10,9 @@ export interface IExpenseRequest {
   expenseType: ExpenseType;
   paymentInstituitionId: string;
   paymentTypeId: string;
-  paymentStatus: PaymentStatus
+  paymentStatus: PaymentStatus;
+  paymentDate: Date;
+  dueDate: Date;
 }
 
 export interface IExpenseResponse {
@@ -22,4 +24,6 @@ export interface IExpenseResponse {
   paymentInstituition: IPaymentInstituitionResponse;
   paymentType: IPaymentTypeResponse;
   paymentStatus: PaymentStatus;
+  paymentDate: Date;
+  dueDate: Date;
 }

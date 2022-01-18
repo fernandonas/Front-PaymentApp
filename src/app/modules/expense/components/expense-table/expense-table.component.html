@@ -1,4 +1,4 @@
-<nz-table #expense [nzData]="expenses">
+<nz-table #expense [nzData]="expenses$ | async">
   <thead>
     <tr>
       <th id="1">Despesas</th>
@@ -8,6 +8,8 @@
       <th id="4" nzAlign="left">Instituição de Pagamento</th>
       <th id="4" nzAlign="left">Método de Pagamento</th>
       <th id="4" nzAlign="left">Status de Pagamento</th>
+      <th id="4" nzAlign="left">Data de Pagamento</th>
+      <th id="4" nzAlign="left">Data de Vencimento</th>
       <th id="5" nzAlign="right">
         <button nz-button (click)="addExpense.handleModalOpenStatus()" nzType="primary"><em nz-icon
             nzType="plus"></em></button>
@@ -19,17 +21,25 @@
       <td><em nz-icon nzType="barcode"></em> {{ expense.name }}</td>
       <td>{{ expense.purchaseDate | date: 'dd/MM/yyyy' }}</td>
       <td nzAlign="left">{{ expense.amount | currency : 'BRL' }}</td>
-      <td nzAlign="left">{{ expense.expenseType }}</td>
-      <td nzAlign="left">{{ expense.paymentInstituition.name }}</td>
-      <td nzAlign="left">{{ expense.paymentType.name }}</td>
-      <td nzAlign="left">{{ expense.paymentStatus }}</td>
+      <td nzAlign="left">{{ expenseTypeEnum[expense.expenseType] }}</td>
+      <td nzAlign="left">{{ expense.paymentInstituition?.name == null ? 'Aguardando pagamento...': expense.paymentInstituition.name }}</td>
+      <td nzAlign="left">{{ expense.paymentType?.name == null ? 'Aguardando pagamento...': expense.paymentType.name }}</td>
+      <td nzAlign="left">
+        {{ paymentStatusEnum[expense.paymentStatus] }}
+        <nz-divider nzType="vertical"></nz-divider>
+        <a><em nz-icon nzType="edit"></em></a>
+      </td>
+      <td nzAlign="left">{{ expense.paymentDate | date: 'dd/MM/yyyy' }}</td>
+      <td nzAlign="left">{{ expense.dueDate | date: 'dd/MM/yyyy' }}</td>
       <td nzAlign="right">
         <a (click)="deleteExpense(expense)"><em class="red" nz-icon nzType="delete"></em></a>
         <nz-divider nzType="vertical"></nz-divider>
         <a><em nz-icon nzType="edit"></em></a>
+
       </td>
     </tr>
   </tbody>
 </nz-table>
+<app-add-expense-form (expenseReturn)="addExpensee($event)"></app-add-expense-form>
 <app-add-expense #addExpense></app-add-expense>
 <app-modal [content]="content" #modal></app-modal>

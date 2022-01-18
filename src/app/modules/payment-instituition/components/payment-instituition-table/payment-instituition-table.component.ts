@@ -19,10 +19,14 @@ export class PaymentInstituitionTableComponent {
     private readonly modal: NzModalService
   ) {
     this.getPaymentInstituitions();
+    this.teste()
   }
 
   private deletePaymentInstituition(paymentIntituitionResponse: IPaymentInstituitionResponse): void {
     this.paymentInstituitionService.deletePaymentInstituition(paymentIntituitionResponse).subscribe(() => this.getPaymentInstituitions());
+  }
+
+  teste(): void {
   }
 
   public getPaymentInstituitions(): void {
