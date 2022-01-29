@@ -19,6 +19,10 @@ export class ExpenseService {
     return this.httpClient.get<IExpenseResponse[]>(this.expenseApi);
   }
 
+  getExpense(expense: IExpenseResponse): Observable<IExpenseResponse> {
+    return this.httpClient.get<IExpenseResponse>(`${this.expenseApi}/${expense.id}`);
+  }
+
   deleteExpense(expense: IExpenseResponse): Observable<IExpenseResponse[]> {
     return this.httpClient.delete<IExpenseResponse[]>(this.expenseApi, {
       params: {

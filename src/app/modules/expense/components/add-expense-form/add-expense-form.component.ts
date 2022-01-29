@@ -8,6 +8,7 @@ import { PaymentTypeService } from '@services/payment-type.service';
 import { ExpenseType } from '@enums/expense-type.enum';
 import { Expense } from '../../expense';
 import { ExpenseService } from '@services/expense.service';
+import { LoaderHelper } from '@helpers/loader.helper';
 
 @Component({
   selector: 'app-add-expense-form',
@@ -22,6 +23,7 @@ export class AddExpenseFormComponent implements OnInit {
   expenseForm: FormGroup;
   expenseTypeEnum = ExpenseType;
   imageBaseData: string | ArrayBuffer = null;
+  fileName = "Nenhum arquivo selecionado.";
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -85,6 +87,7 @@ export class AddExpenseFormComponent implements OnInit {
   }
 
   handleFileInput(files: any) {
+    console.log("Resultado: files", files);
     let me = this;
     const file = files.target.files[0];
     const reader = new FileReader();
@@ -96,10 +99,13 @@ export class AddExpenseFormComponent implements OnInit {
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
+    this.fileName = "Arquivo carregado!!"
   }
 
   addImageToForm() {
-    this.expenseForm.controls.invoice.setValue(this.imageBaseData.toString());
+    if(this.imageBaseData !== null){
+      this.expenseForm.controls.invoice.setValue(this.imageBaseData.toString());
+    }
   }
 
   public submitForm(): void {

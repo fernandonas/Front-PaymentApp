@@ -63,9 +63,14 @@
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzFor="invoice">Data de Vencimento</nz-form-label>
+        <nz-form-label [nzSpan]="24" nzFor="invoice">Enviar comprovante:</nz-form-label>
         <nz-form-control [nzSpan]="24" nzErrorTip="Imforme a Data da compra!">
-            <input type="file" accept="image/png, image/jpeg" (change)="handleFileInput($event)">
+            <label for="file">
+                <div class="upload-button">
+                    {{ fileName }}
+                </div>
+            </label>
+            <input class="input-file" type="file" id="file" accept="image/png, image/jpeg" (change)="handleFileInput($event)">
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
@@ -80,7 +85,7 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-control [nzSpan]="24">
-            <button nz-button nzType="primary" [disabled]="!expenseForm.valid">Submit</button>
+            <button  nz-button nzType="primary" [disabled]="!expenseForm.valid">Submit</button>
         </nz-form-control>
     </nz-form-item>
 </form>

@@ -1,0 +1,9 @@
+<a><em *ngIf="expense.paymentDate != null" nz-icon (click)="showModal()" nzType="file-image"></em></a>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Comprovante de pagamento:" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+        <div class="invoice" *ngIf="(expense$ | async)  as expense">
+            <img alt="" [src]="expense.invoice" />
+        </div>
+    </ng-container>
+</nz-modal>
