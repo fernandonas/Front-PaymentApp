@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
 import { ErrorHandlerInterceptor } from './modules/shared/interceptors/http-interceptor';
+import { LayoutModule } from './modules/layout/layout.module';
 
 registerLocaleData(pt);
 
@@ -24,7 +25,8 @@ registerLocaleData(pt);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    LayoutModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true},
