@@ -1,19 +1,20 @@
-import { Observable, Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { Observable, Subscription } from 'rxjs';
+
 import { ExpenseService } from '@services/expense.service';
 import { IModal } from '@interfaces/modal.interface';
 import { IExpenseResponse } from '@interfaces/expense.interface';
-import { FormGroup } from '@angular/forms';
+import { ExpenseType } from '@enums/expense-type.enum';
+import { PaymentStatus } from '@enums/payment-status.enum';
 import { Expense } from '../../expense';
-import { PaymentStatus } from '../../../shared/enums/payment-status.enum';
-import { ExpenseType } from '../../../shared/enums/expense-type.enum';
 
 @Component({
   selector: 'app-expense-table',
   templateUrl: './expense-table.component.html',
   styleUrls: ['./expense-table.component.less']
 })
-
 export class ExpenseTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   expenses$: Observable<IExpenseResponse[]>;
@@ -32,7 +33,7 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
     this.getExpenses();
   }
 
-  getExpenses(): void {
+  public getExpenses(): void {
     this.expenses$ = this.expenseService.getExpenses();
   }
 
