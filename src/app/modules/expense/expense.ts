@@ -1,7 +1,7 @@
+import { ExpenseType } from "@enums/expense-type.enum";
+import { PaymentStatus } from "@enums/payment-status.enum";
 import { IPaymentInstituitionResponse } from "@interfaces/payment-instituition.interface";
 import { IPaymentTypeResponse } from "@interfaces/payment-type.interface";
-import { ExpenseType } from "../shared/enums/expense-type.enum";
-import { PaymentStatus } from "../shared/enums/payment-status.enum";
 
 export class Expense {
     id: string;
