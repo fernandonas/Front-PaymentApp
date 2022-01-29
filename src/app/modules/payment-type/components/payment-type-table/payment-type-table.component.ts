@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { NzModalService } from 'ng-zorro-antd/modal';
+
+import { Subscription } from 'rxjs';
+
 import { LoaderHelper } from '@helpers/loader.helper';
 import { PaymentTypeService } from '@services/payment-type.service';
 import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
@@ -9,8 +13,8 @@ import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
   templateUrl: './payment-type-table.component.html',
   styleUrls: ['./payment-type-table.component.less']
 })
-
-export class PaymentTypeTableComponent {
+export class PaymentTypeTableComponent implements OnInit, OnDestroy {
+  subscription: Subscription = new Subscription();
   paymentTypes: IPaymentTypeResponse[] = [];
   loading = new LoaderHelper();
   isAddModalOpen = false;
@@ -18,22 +22,26 @@ export class PaymentTypeTableComponent {
   constructor(
     private readonly paymentTypeService: PaymentTypeService,
     private readonly modal: NzModalService
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.getPaymentTypes();
   }
 
   public getPaymentTypes(): void {
     this.loading.enable();
-    this.paymentTypeService.getPaymentTypes().subscribe(
-      paymentTypes => {
-        this.paymentTypes = paymentTypes;
-        this.loading.disable();
-      }
-    )
+    this.subscription.add(this.paymentTypeService.getPaymentTypes()
+      .subscribe(
+        paymentTypes => {
+          this.paymentTypes = paymentTypes;
+          this.loading.disable();
+        }
+      ));
   }
 
   private deletePaymentType(paymentTypeResponse: IPaymentTypeResponse): void {
-    this.paymentTypeService.deletePaymentType(paymentTypeResponse).subscribe(() => this.getPaymentTypes());
+    this.subscription.add(this.paymentTypeService.deletePaymentType(paymentTypeResponse)
+      .subscribe(() => this.getPaymentTypes()));
   }
 
   showDeleteConfirm(paymentTypeResponse: IPaymentTypeResponse): void {
@@ -47,5 +55,9 @@ export class PaymentTypeTableComponent {
       nzCancelText: 'Não',
       nzOnCancel: () => console.log('Cancel')
     });
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 }

@@ -1,26 +1,31 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { LoaderHelper } from '@helpers/loader.helper';
 import { IPaymentInstituitionResponse } from '@interfaces/payment-instituition.interface';
 import { PaymentInstituitionService } from '@services/payment-instituition.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-payment-instituition',
   templateUrl: './update-payment-instituition.component.html',
   styleUrls: ['./update-payment-instituition.component.less']
 })
-
-export class UpdatePaymentInstituitionComponent {
+export class UpdatePaymentInstituitionComponent implements OnInit, OnDestroy {
   @Output() response = new EventEmitter();
+
+  subscription: Subscription = new Subscription();
+  updatePaymentInstituitionForm: FormGroup;
   loading = new LoaderHelper();
   isVisible = false;
-  updatePaymentInstituitionForm: FormGroup;
 
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly paymentInstituitionService: PaymentInstituitionService,
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.createForm();
   }
 
@@ -32,16 +37,17 @@ export class UpdatePaymentInstituitionComponent {
   }
 
   public updatePaymentType(paymentInstituitionResponse: IPaymentInstituitionResponse): void {
-    this.paymentInstituitionService.updatePaymentInstituition(paymentInstituitionResponse).subscribe(() => {
-      this.response.emit()
-      this.updatePaymentInstituitionForm.reset();
-      this.isVisible = false;
-      this.loading.disable();
-    },
-      (error: HttpErrorResponse) => {
-        this.updatePaymentInstituitionForm.setErrors(error.error.detailedMessage);
+    this.subscription.add(this.paymentInstituitionService.updatePaymentInstituition(paymentInstituitionResponse)
+      .subscribe(() => {
+        this.response.emit();
+        this.updatePaymentInstituitionForm.reset();
+        this.isVisible = false;
         this.loading.disable();
-      });
+      },
+        (error: HttpErrorResponse) => {
+          this.updatePaymentInstituitionForm.setErrors(error.error.detailedMessage);
+          this.loading.disable();
+        }));
   }
 
   public handleOk(): void {
@@ -63,5 +69,9 @@ export class UpdatePaymentInstituitionComponent {
       id: paymentInstituitionResponse.id
     });
     this.isVisible = !this.isVisible;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
