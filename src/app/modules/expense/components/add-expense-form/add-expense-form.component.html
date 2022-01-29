@@ -1,20 +1,26 @@
-<form [formGroup]="expenseForm" (ngSubmit)="submitForm()">
-    <div class="formGroup">
-        <div>
-            <label>Despesa:</label>
-            <input nz-input formControlName="name">
-        </div>
-        <div>
-            <label>Data da Compra:</label>
-            <nz-date-picker formControlName="purchaseDate" nzFormat="dd/MM/yyyy"></nz-date-picker>
-        </div>
-        <div>
-            <label>Valor:</label>
-            <input nz-input type="number" formControlName="amount">
-        </div>
-        <div>
-            <label>Tipo de Despesa:</label>
-            <nz-select formControlName="expenseType">
+<form nz-form  [formGroup]="expenseForm" class="form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired nzFor="name">Despesa</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Preencha o nome da despesa!">
+            <input nz-input type="text" formControlName="name" id="name" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired nzFor="purchaseDate">Data da Compra</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Imforme a Data da compra!">
+            <nz-date-picker formControlName="purchaseDate" id="purchaseDate" nzFormat="dd/MM/yyyy"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired nzFor="amount">Valor</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Informe o valor da despesa!">
+            <input nz-input type="number" formControlName="amount" id="amount">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="expenseType">Tipo de Despesa</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Informe o tipo da despesa!">
+            <nz-select formControlName="expenseType" id="expenseType">
                 <nz-option nzValue="0" nzLabel="Moradia"></nz-option>
                 <nz-option nzValue="1" nzLabel="Saúde"></nz-option>
                 <nz-option nzValue="2" nzLabel="Lazer"></nz-option>
@@ -24,39 +30,57 @@
                 <nz-option nzValue="6" nzLabel="Eletrônicos"></nz-option>
                 <nz-option nzValue="7" nzLabel="Educação"></nz-option>
             </nz-select>
-        </div>
-        <div>
-            <label>Instituição de Pagamento:</label>
-            <nz-select formControlName="paymentInstituitionId">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="paymentInstituitionId">Instituição de Pagamento</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Informe o valor da despesa!">
+            <nz-select formControlName="paymentInstituitionId" id="paymentInstituitionId">
                 <nz-option *ngFor="let paymentInstituition of paymentInstituitions" [nzValue]="paymentInstituition.id"
                     [nzLabel]="paymentInstituition.name"></nz-option>
             </nz-select>
-        </div>
-        <div>
-            <label>Tipo de Pagamento:</label>
-            <nz-select formControlName="paymentTypeId">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="paymentTypeId">Tipo de Pagamento</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Informe o valor da despesa!">
+            <nz-select formControlName="paymentTypeId" id="paymentTypeId">
                 <nz-option *ngFor="let paymentType of paymentTypes" [nzValue]="paymentType.id"
                     [nzLabel]="paymentType.name"></nz-option>
             </nz-select>
-        </div>
-        <div>
-            <label>Data do Pagamento:</label>
-            <nz-date-picker formControlName="paymentDate" nzFormat="dd/MM/yyyy"></nz-date-picker>
-        </div>
-        <div>
-            <label>Data de Vencimento:</label>
-            <nz-date-picker formControlName="dueDate" nzFormat="dd/MM/yyyy"></nz-date-picker>
-        </div>
-        <div>
-            <label>Status Pagamento:</label>
-            <nz-select formControlName="paymentStatus">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="paymentDate">Data do Pagamento</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Imforme a Data da compra!">
+            <nz-date-picker formControlName="paymentDate" id="paymentDate" nzFormat="dd/MM/yyyy"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="dueDate">Data de Vencimento</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Imforme a Data da compra!">
+            <nz-date-picker formControlName="dueDate" id="dueDate" nzFormat="dd/MM/yyyy"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="invoice">Data de Vencimento</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Imforme a Data da compra!">
+            <input type="file" accept="image/png, image/jpeg" (change)="handleFileInput($event)">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="paymentStatus">Status Pagamento</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Informe o valor da despesa!">
+            <nz-select formControlName="paymentStatus" id="paymentStatus">
                 <nz-option nzValue="0" nzLabel="Pago"></nz-option>
                 <nz-option nzValue="1" nzLabel="Aguardando Pagamento"></nz-option>
                 <nz-option nzValue="2" nzLabel="Cancelado"></nz-option>
             </nz-select>
-        </div>
-        <div>
-            <button nz-button type="submit">Adicionar</button>
-        </div>
-    </div>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+            <button nz-button nzType="primary" [disabled]="!expenseForm.valid">Submit</button>
+        </nz-form-control>
+    </nz-form-item>
 </form>

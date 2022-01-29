@@ -13,6 +13,7 @@ export interface IExpenseRequest {
   paymentStatus: PaymentStatus;
   paymentDate: Date;
   dueDate: Date;
+  invoice: string;
 }
 
 export interface IExpenseResponse {
@@ -26,4 +27,5 @@ export interface IExpenseResponse {
   paymentStatus: PaymentStatus;
   paymentDate: Date;
   dueDate: Date;
+  invoice: string;
 }

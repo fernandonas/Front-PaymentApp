@@ -20,6 +20,7 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     StepsComponent,
     ModalComponent,
     NavbarComponent,
+    NzFormModule
   ]
 })
 export class SharedModule { }

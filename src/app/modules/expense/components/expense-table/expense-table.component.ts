@@ -8,7 +8,6 @@ import { IModal } from '@interfaces/modal.interface';
 import { IExpenseResponse } from '@interfaces/expense.interface';
 import { ExpenseType } from '@enums/expense-type.enum';
 import { PaymentStatus } from '@enums/payment-status.enum';
-import { Expense } from '../../expense';
 
 @Component({
   selector: 'app-expense-table',

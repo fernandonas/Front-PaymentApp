@@ -21,6 +21,7 @@ export class AddExpenseFormComponent implements OnInit {
   paymentTypes: IPaymentTypeResponse[];
   expenseForm: FormGroup;
   expenseTypeEnum = ExpenseType;
+  imageBaseData: string | ArrayBuffer = null;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -37,15 +38,16 @@ export class AddExpenseFormComponent implements OnInit {
 
   private initiateForm(): void {
     this.expenseForm = this.formBuilder.group({
-      name: ["", Validators.required],
-      purchaseDate: ["", Validators.required],
-      amount: ["", Validators.required],
+      name: [null, Validators.required],
+      purchaseDate: [new Date(), Validators.required],
+      amount: [null, Validators.required],
       expenseType: ["0", Validators.required],
       paymentInstituitionId: [null, Validators.nullValidator],
       paymentTypeId: [null, Validators.nullValidator],
       paymentDate: [null, Validators.nullValidator],
       paymentStatus: ["0", Validators.required],
-      dueDate: [null, Validators.nullValidator]
+      dueDate: [null, Validators.nullValidator],
+      invoice: [null, Validators.nullValidator]
     })
   }
 
@@ -75,13 +77,42 @@ export class AddExpenseFormComponent implements OnInit {
       this.expenseForm.controls.paymentTypeId.value,
       +this.expenseForm.controls.paymentStatus.value,
       this.expenseForm.controls.paymentDate.value,
-      this.expenseForm.controls.dueDate.value
+      this.expenseForm.controls.dueDate.value,
+      this.expenseForm.controls.invoice.value
     )
     this.expenseService.addExpense(expense).subscribe(() => this.expenseReturn.next())
 
   }
 
+  handleFileInput(files: any) {
+    let me = this;
+    const file = files.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+      me.imageBaseData = reader.result;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  addImageToForm() {
+    this.expenseForm.controls.invoice.setValue(this.imageBaseData.toString());
+  }
+
   public submitForm(): void {
-    this.addExpense();
+    this.addImageToForm();
+    if (this.expenseForm.valid) {
+      this.addExpense();
+    } else {
+      Object.values(this.expenseForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 }
