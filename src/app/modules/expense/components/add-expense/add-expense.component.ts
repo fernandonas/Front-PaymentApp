@@ -7,9 +7,9 @@ import { LoaderHelper } from '@helpers/loader.helper';
   templateUrl: './add-expense.component.html',
   styleUrls: ['./add-expense.component.less']
 })
-
 export class AddExpenseComponent {
   @Output() response = new EventEmitter();
+
   loading = new LoaderHelper();
   isVisible = false;
   addExpenseForm: FormGroup;
@@ -17,7 +17,7 @@ export class AddExpenseComponent {
   public handleOk(): void {
     if (this.addExpenseForm.valid) {
       //TODO Adicionar método para adicionar expense
-      this.isVisible = false
+      this.isVisible = false;
       return
     }
     this.isVisible = true;
