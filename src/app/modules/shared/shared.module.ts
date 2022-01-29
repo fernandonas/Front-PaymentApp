@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StepsComponent } from './components/steps/steps.component';
@@ -8,7 +9,6 @@ import { ModalComponent } from './components/modal/modal.component';
 
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { RouterModule } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -49,23 +49,23 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
   exports: [
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
     NzIconModule,
-    NavbarComponent,
     NzGridModule,
     NzMenuModule,
-    RouterModule,
     NzTableModule,
     NzDividerModule,
     NzModalModule,
     NzButtonModule,
     NzInputModule,
     NzSpinModule,
-    StepsComponent,
     NzStepsModule,
-    ModalComponent,
     NzSelectModule,
     NzDatePickerModule,
-    NzMessageModule
+    NzMessageModule,
+    StepsComponent,
+    ModalComponent,
+    NavbarComponent,
   ]
 })
 export class SharedModule { }
