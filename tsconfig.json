@@ -35,6 +35,9 @@
       ],
       "@components/*": [
         "./src/app/modules/shared/components/*"
+      ],
+      "@enums/*": [
+        "./src/app/modules/shared/enums/*"
       ]
     },
   },
