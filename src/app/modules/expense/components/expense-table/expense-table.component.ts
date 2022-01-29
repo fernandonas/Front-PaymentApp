@@ -43,24 +43,7 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
         this.getExpenses();
       }
     ));
-  }
-
-  public addExpensee(expenseForm: FormGroup): void {
-    console.log("Resultado: expenseForm", expenseForm.controls.name.value);
-    const expense = new Expense(
-      expenseForm.controls.name.value,
-      expenseForm.controls.purchaseDate.value,
-      expenseForm.controls.amount.value,
-      +expenseForm.controls.expenseType.value,
-      expenseForm.controls.paymentInstituitionId.value,
-      expenseForm.controls.paymentTypeId.value,
-      +expenseForm.controls.paymentStatus.value,
-      expenseForm.controls.paymentDate.value,
-      expenseForm.controls.dueDate.value
-    )
-    console.log("Resultado: expense", expense);
-    this.expenseService.addExpense(expense).subscribe(() => this.getExpenses())
-  }
+  }  
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

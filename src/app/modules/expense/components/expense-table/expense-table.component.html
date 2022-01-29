@@ -40,6 +40,5 @@
     </tr>
   </tbody>
 </nz-table>
-<app-add-expense-form (expenseReturn)="addExpensee($event)"></app-add-expense-form>
-<app-add-expense #addExpense></app-add-expense>
+<app-add-expense #addExpense (response)="getExpenses()"></app-add-expense>
 <app-modal [content]="content" #modal></app-modal>

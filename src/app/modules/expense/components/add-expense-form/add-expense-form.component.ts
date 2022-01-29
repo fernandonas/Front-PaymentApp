@@ -6,6 +6,8 @@ import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
 import { PaymentInstituitionService } from '@services/payment-instituition.service';
 import { PaymentTypeService } from '@services/payment-type.service';
 import { ExpenseType } from '@enums/expense-type.enum';
+import { Expense } from '../../expense';
+import { ExpenseService } from '@services/expense.service';
 
 @Component({
   selector: 'app-add-expense-form',
@@ -23,7 +25,8 @@ export class AddExpenseFormComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly paymentInstituitionService: PaymentInstituitionService,
-    private readonly paymentTypeService: PaymentTypeService
+    private readonly paymentTypeService: PaymentTypeService,
+    private readonly expenseService: ExpenseService
   ) { }
 
   ngOnInit(): void {
@@ -62,7 +65,23 @@ export class AddExpenseFormComponent implements OnInit {
     })
   }
 
+  public addExpense(): void {
+    const expense = new Expense(
+      this.expenseForm.controls.name.value,
+      this.expenseForm.controls.purchaseDate.value,
+      this.expenseForm.controls.amount.value,
+      +this.expenseForm.controls.expenseType.value,
+      this.expenseForm.controls.paymentInstituitionId.value,
+      this.expenseForm.controls.paymentTypeId.value,
+      +this.expenseForm.controls.paymentStatus.value,
+      this.expenseForm.controls.paymentDate.value,
+      this.expenseForm.controls.dueDate.value
+    )
+    this.expenseService.addExpense(expense).subscribe(() => this.expenseReturn.next())
+
+  }
+
   public submitForm(): void {
-    this.expenseReturn.next(this.expenseForm);
+    this.addExpense();
   }
 }
