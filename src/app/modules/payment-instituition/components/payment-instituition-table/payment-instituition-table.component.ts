@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { NzModalService } from 'ng-zorro-antd/modal';
 
@@ -15,8 +16,8 @@ import { LoaderHelper } from '@helpers/loader.helper';
 })
 export class PaymentInstituitionTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
-  paymentInstituitions: IPaymentInstituitionResponse[];
-  loading = new LoaderHelper();
+  paymentInstituitions$: Observable<IPaymentInstituitionResponse[]>;
+  loadingPaymentIntituitions = new LoaderHelper();
 
   constructor(
     private readonly paymentInstituitionService: PaymentInstituitionService,
@@ -28,20 +29,19 @@ export class PaymentInstituitionTableComponent implements OnInit, OnDestroy {
   }
 
   private deletePaymentInstituition(paymentIntituitionResponse: IPaymentInstituitionResponse): void {
-    this.subscription.add(
-      this.paymentInstituitionService.deletePaymentInstituition(paymentIntituitionResponse)
-        .subscribe(() => this.getPaymentInstituitions()));
+    this.subscription.add(this.paymentInstituitionService.deletePaymentInstituition(paymentIntituitionResponse)
+      .subscribe(() => this.getPaymentInstituitions()));
   }
 
   public getPaymentInstituitions(): void {
-    this.loading.enable();
-    this.subscription.add(this.paymentInstituitionService.getPaymentInstituitions()
-      .subscribe(
-        paymentTypes => {
-          this.paymentInstituitions = paymentTypes;
-          this.loading.disable();
-        }
-      ));
+    this.loadingPaymentIntituitions.enable();
+    this.paymentInstituitions$ = this.paymentInstituitionService.getPaymentInstituitions()
+      .pipe(
+        map((paymentInstituitions) => {
+          this.loadingPaymentIntituitions.disable();
+          return paymentInstituitions;
+        })
+      );
   }
 
   public showDeleteConfirm(paymentInstituitionResponse: IPaymentInstituitionResponse): void {

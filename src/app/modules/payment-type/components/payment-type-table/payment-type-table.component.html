@@ -1,6 +1,6 @@
 
 <nz-spin [nzSpinning]="loading.status()" nzTip="Carregando...">
-<nz-table #paymentTypeTable [nzData]="paymentTypes">
+<nz-table #paymentTypeTable [nzData]="paymentTypes$ | async">
   <thead>
     <tr>
       <th id="1">Métodos de Pagamento</th>

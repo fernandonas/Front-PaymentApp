@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { LoaderHelper } from '@helpers/loader.helper';
 import { PaymentTypeService } from '@services/payment-type.service';
@@ -15,7 +16,7 @@ import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
 })
 export class PaymentTypeTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
-  paymentTypes: IPaymentTypeResponse[] = [];
+  paymentTypes$: Observable<IPaymentTypeResponse[]>;
   loading = new LoaderHelper();
   isAddModalOpen = false;
 
@@ -30,13 +31,13 @@ export class PaymentTypeTableComponent implements OnInit, OnDestroy {
 
   public getPaymentTypes(): void {
     this.loading.enable();
-    this.subscription.add(this.paymentTypeService.getPaymentTypes()
-      .subscribe(
-        paymentTypes => {
-          this.paymentTypes = paymentTypes;
+    this.paymentTypes$ = this.paymentTypeService.getPaymentTypes()
+      .pipe(
+        map(paymentTypes => {
           this.loading.disable();
-        }
-      ));
+          return paymentTypes;
+        })
+      );
   }
 
   private deletePaymentType(paymentTypeResponse: IPaymentTypeResponse): void {
@@ -44,7 +45,7 @@ export class PaymentTypeTableComponent implements OnInit, OnDestroy {
       .subscribe(() => this.getPaymentTypes()));
   }
 
-  showDeleteConfirm(paymentTypeResponse: IPaymentTypeResponse): void {
+  public showDeleteConfirm(paymentTypeResponse: IPaymentTypeResponse): void {
     this.modal.confirm({
       nzTitle: `Tem certeza que deseja deletar ${paymentTypeResponse.name}?`,
       nzContent: '',
@@ -58,6 +59,6 @@ export class PaymentTypeTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

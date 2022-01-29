@@ -1,4 +1,4 @@
-<nz-table #paymentInstituitionTable [nzData]="paymentInstituitions">
+<nz-table [nzLoading]="loadingPaymentIntituitions.status()" #paymentInstituitionTable [nzData]="paymentInstituitions$ | async">
     <thead>
       <tr>
         <th>Instituições Financeiras</th>
