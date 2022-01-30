@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
+
+import { Observable } from 'rxjs';
+
 import { IExpenseResponse } from '@interfaces/expense.interface';
 import { ExpenseService } from '@services/expense.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-invoice',

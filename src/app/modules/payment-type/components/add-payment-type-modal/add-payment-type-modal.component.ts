@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Subscription } from 'rxjs';
+
 import { IPaymentTypeRequest } from '@interfaces/payment-type.interface';
 import { PaymentTypeService } from '@services/payment-type.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-payment-type-modal',

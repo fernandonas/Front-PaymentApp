@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
-import { IPaymentInstituitionRequest, IPaymentInstituitionResponse } from '../interfaces/payment-instituition.interface';
+
+import { IPaymentInstituitionRequest, IPaymentInstituitionResponse } from '@interfaces/payment-instituition.interface';
 
 @Injectable({
   providedIn: 'root'

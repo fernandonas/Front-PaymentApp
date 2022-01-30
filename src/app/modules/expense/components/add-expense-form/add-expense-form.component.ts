@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Observable } from 'rxjs';
+
 import { IPaymentInstituitionResponse } from '@interfaces/payment-instituition.interface';
 import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
 import { PaymentInstituitionService } from '@services/payment-instituition.service';
@@ -8,7 +10,6 @@ import { PaymentTypeService } from '@services/payment-type.service';
 import { ExpenseType } from '@enums/expense-type.enum';
 import { Expense } from '../../expense';
 import { ExpenseService } from '@services/expense.service';
-import { LoaderHelper } from '@helpers/loader.helper';
 
 @Component({
   selector: 'app-add-expense-form',
@@ -18,8 +19,8 @@ import { LoaderHelper } from '@helpers/loader.helper';
 export class AddExpenseFormComponent implements OnInit {
   @Output() expenseReturn = new EventEmitter();
 
-  paymentInstituitions: IPaymentInstituitionResponse[];
-  paymentTypes: IPaymentTypeResponse[];
+  paymentInstituitions$: Observable<IPaymentInstituitionResponse[]>;
+  paymentTypes$: Observable<IPaymentTypeResponse[]>;
   expenseForm: FormGroup;
   expenseTypeEnum = ExpenseType;
   imageBaseData: string | ArrayBuffer = null;
@@ -50,23 +51,15 @@ export class AddExpenseFormComponent implements OnInit {
       paymentStatus: ["0", Validators.required],
       dueDate: [null, Validators.nullValidator],
       invoice: [null, Validators.nullValidator]
-    })
+    });
   }
 
   private getPaymentInstituition(): void {
-    this.paymentInstituitionService.getPaymentInstituitions().subscribe({
-      next: response => {
-        this.paymentInstituitions = response;
-      }
-    })
+    this.paymentInstituitions$ = this.paymentInstituitionService.getPaymentInstituitions();
   }
 
   private getPaymentTypes(): void {
-    this.paymentTypeService.getPaymentTypes().subscribe({
-      next: response => {
-        this.paymentTypes = response;
-      }
-    })
+    this.paymentTypes$ = this.paymentTypeService.getPaymentTypes();
   }
 
   public addExpense(): void {
@@ -81,12 +74,11 @@ export class AddExpenseFormComponent implements OnInit {
       this.expenseForm.controls.paymentDate.value,
       this.expenseForm.controls.dueDate.value,
       this.expenseForm.controls.invoice.value
-    )
-    this.expenseService.addExpense(expense).subscribe(() => this.expenseReturn.next())
-
+    );
+    this.expenseService.addExpense(expense).subscribe(() => this.expenseReturn.next());
   }
 
-  handleFileInput(files: any) {
+  public handleFileInput(files: any) {
     console.log("Resultado: files", files);
     let me = this;
     const file = files.target.files[0];
@@ -102,8 +94,8 @@ export class AddExpenseFormComponent implements OnInit {
     this.fileName = "Arquivo carregado!!"
   }
 
-  addImageToForm() {
-    if(this.imageBaseData !== null){
+  private addImageToForm() {
+    if (this.imageBaseData !== null) {
       this.expenseForm.controls.invoice.setValue(this.imageBaseData.toString());
     }
   }

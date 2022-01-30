@@ -36,7 +36,7 @@
         <nz-form-label [nzSpan]="24" nzFor="paymentInstituitionId">Instituição de Pagamento</nz-form-label>
         <nz-form-control [nzSpan]="24" nzErrorTip="Informe o valor da despesa!">
             <nz-select formControlName="paymentInstituitionId" id="paymentInstituitionId">
-                <nz-option *ngFor="let paymentInstituition of paymentInstituitions" [nzValue]="paymentInstituition.id"
+                <nz-option *ngFor="let paymentInstituition of paymentInstituitions$ | async" [nzValue]="paymentInstituition.id"
                     [nzLabel]="paymentInstituition.name"></nz-option>
             </nz-select>
         </nz-form-control>
@@ -45,7 +45,7 @@
         <nz-form-label [nzSpan]="24" nzFor="paymentTypeId">Tipo de Pagamento</nz-form-label>
         <nz-form-control [nzSpan]="24" nzErrorTip="Informe o valor da despesa!">
             <nz-select formControlName="paymentTypeId" id="paymentTypeId">
-                <nz-option *ngFor="let paymentType of paymentTypes" [nzValue]="paymentType.id"
+                <nz-option *ngFor="let paymentType of paymentTypes$ | async" [nzValue]="paymentType.id"
                     [nzLabel]="paymentType.name"></nz-option>
             </nz-select>
         </nz-form-control>

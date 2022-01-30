@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IPaymentTypeRequest, IPaymentTypeResponse } from '../interfaces/payment-type.interface';
 
+import { Observable } from 'rxjs';
+
+import { IPaymentTypeRequest, IPaymentTypeResponse } from '@interfaces/payment-type.interface';
 @Injectable({
   providedIn: 'root'
 })
