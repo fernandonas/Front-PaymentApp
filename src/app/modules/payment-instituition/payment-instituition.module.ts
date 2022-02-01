@@ -7,14 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { AddPaymentInstituitionComponent } from './components/add-payment-instituition/add-payment-instituition.component';
 import { UpdatePaymentInstituitionComponent } from './components/update-payment-instituition/update-payment-instituition.component';
 import { PaymentInstituitionComponent } from './page/payment-instituition.component';
-
+import { DeletePaymentInstituitionComponent } from './components/delete-payment-instituition/delete-payment-instituition.component';
 
 @NgModule({
   declarations: [
     PaymentInstituitionComponent,
     PaymentInstituitionTableComponent,
     AddPaymentInstituitionComponent,
-    UpdatePaymentInstituitionComponent
+    UpdatePaymentInstituitionComponent,
+    DeletePaymentInstituitionComponent
   ],
   imports: [
     CommonModule,

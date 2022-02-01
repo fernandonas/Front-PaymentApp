@@ -11,7 +11,7 @@
         <tr *ngFor="let paymentIntituition of paymentInstituitionTable.data">
           <td><em nz-icon nzType="bank"></em> {{ paymentIntituition.name }}</td>
           <td nzAlign="right">
-            <a (click)="showDeleteConfirm(paymentIntituition)"><em class="red" nz-icon nzType="delete"></em></a>
+            <app-delete-payment-instituition [paymentIntituition]="paymentIntituition" (response)="getPaymentInstituitions()"></app-delete-payment-instituition>
             <nz-divider nzType="vertical"></nz-divider>
             <a (click)="updatePaymentInstituitionModal.handleModalOpenStatus(paymentIntituition)"><em nz-icon nzType="edit"></em></a>
           </td>
