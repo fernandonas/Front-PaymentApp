@@ -30,14 +30,6 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
     this.expenses$ = this.expenseService.getExpenses();
   }
 
-  public deleteExpense(expense: IExpenseResponse): void {
-    this.subscription.add(this.expenseService.deleteExpense(expense).subscribe(
-      () => {
-        this.getExpenses();
-      }
-    ));
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

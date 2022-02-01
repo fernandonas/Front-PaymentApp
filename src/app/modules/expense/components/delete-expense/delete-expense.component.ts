@@ -15,9 +15,7 @@ import { ExpenseService } from '@services/expense.service';
 })
 export class DeleteExpenseComponent {
   @Input() expense: IExpenseResponse;
-  @Output() response: EventEmitter<any> = new EventEmitter<any>()
-
-  subscription: Subscription = new Subscription();
+  @Output() response: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private readonly modal: NzModalService,
@@ -38,10 +36,10 @@ export class DeleteExpenseComponent {
   }
 
   private deleteExpense(): void {
-    this.subscription.add(this.expenseService.deleteExpense(this.expense).pipe(
+    this.expenseService.deleteExpense(this.expense).pipe(
       map(() => {
         this.response.next()
       })
-    ).subscribe());
+    ).subscribe();
   }
 }
