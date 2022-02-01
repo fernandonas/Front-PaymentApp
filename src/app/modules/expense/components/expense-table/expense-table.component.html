@@ -10,7 +10,7 @@
       <th id="7" nzAlign="center">Status de Pagamento</th>
       <th id="8" nzAlign="left">Data de Pagamento</th>
       <th id="9" nzAlign="left">Data de Vencimento</th>
-      <th id="10" nzAlign="right">
+      <th id="10" nzWidth="125px" nzAlign="right">
         <button nz-button (click)="addExpense.handleModalOpenStatus()" nzType="primary"><em nz-icon
             nzType="plus"></em></button>
       </th>
@@ -34,10 +34,9 @@
         <nz-divider nzType="vertical"></nz-divider>
         <a><em nz-icon nzType="edit"></em></a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="deleteExpense(expense)"><em class="red" nz-icon nzType="delete"></em></a>
+        <app-delete-expense [expense]="expense" (response)="getExpenses()"></app-delete-expense>
       </td>
     </tr>
   </tbody>
 </nz-table>
 <app-add-expense #addExpense (response)="getExpenses()"></app-add-expense>
-<app-modal [content]="content" #modal></app-modal>

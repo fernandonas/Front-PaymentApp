@@ -8,6 +8,7 @@ import { ExpenseTableComponent } from './components/expense-table/expense-table.
 import { AddExpenseComponent } from './components/add-expense/add-expense.component';
 import { AddExpenseFormComponent } from './components/add-expense-form/add-expense-form.component';
 import { ViewInvoiceComponent } from './components/view-invoice/view-invoice.component';
+import { DeleteExpenseComponent } from './components/delete-expense/delete-expense.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ViewInvoiceComponent } from './components/view-invoice/view-invoice.com
     ExpenseTableComponent,
     AddExpenseComponent,
     AddExpenseFormComponent,
-    ViewInvoiceComponent
+    ViewInvoiceComponent,
+    DeleteExpenseComponent
   ],
   imports: [
     CommonModule,

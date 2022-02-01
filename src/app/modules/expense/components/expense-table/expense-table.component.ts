@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { ExpenseService } from '@services/expense.service';
-import { IModal } from '@interfaces/modal.interface';
 import { IExpenseResponse } from '@interfaces/expense.interface';
 import { ExpenseType } from '@enums/expense-type.enum';
 import { PaymentStatus } from '@enums/payment-status.enum';
@@ -18,10 +17,6 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
   expenses$: Observable<IExpenseResponse[]>;
   paymentStatusEnum = PaymentStatus;
   expenseTypeEnum = ExpenseType;
-  content: IModal = {
-    content: "Texto",
-    title: "Título"
-  }
 
   constructor(
     private readonly expenseService: ExpenseService
@@ -41,7 +36,7 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
         this.getExpenses();
       }
     ));
-  }  
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
