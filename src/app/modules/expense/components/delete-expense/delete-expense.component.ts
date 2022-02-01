@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 import { NzModalService } from 'ng-zorro-antd/modal';
 
@@ -24,7 +23,7 @@ export class DeleteExpenseComponent {
 
   public showDeleteConfirm(): void {
     this.modal.confirm({
-      nzTitle: 'Tem certeza que deseja deletar essa despesa?',
+      nzTitle: `Tem certeza que deseja deletar ${this.expense.name}?`,
       nzContent: '',
       nzOkText: 'Sim',
       nzOkType: 'primary',
