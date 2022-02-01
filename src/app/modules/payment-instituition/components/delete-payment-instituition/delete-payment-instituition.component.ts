@@ -23,7 +23,7 @@ export class DeletePaymentInstituitionComponent {
 
   public showDeleteConfirm(): void {
     this.modal.confirm({
-      nzTitle: 'Tem certeza que deseja deletar essa despesa?',
+      nzTitle: 'Tem certeza que deseja deletar instituição de pagamento?',
       nzContent: '',
       nzOkText: 'Sim',
       nzOkType: 'primary',
