@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { map } from 'rxjs/operators';
 
-import { map } from 'rxjs/internal/operators/map';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
 import { PaymentTypeService } from '@services/payment-type.service';
