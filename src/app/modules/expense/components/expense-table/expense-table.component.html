@@ -7,10 +7,10 @@
       <th id="4" nzAlign="left">Tipo de Despesa</th>
       <th id="5" nzAlign="left">Instituição de Pagamento</th>
       <th id="6" nzAlign="left">Método de Pagamento</th>
-      <th id="7" nzAlign="left">Status de Pagamento</th>
+      <th id="7" nzAlign="center">Status de Pagamento</th>
       <th id="8" nzAlign="left">Data de Pagamento</th>
       <th id="9" nzAlign="left">Data de Vencimento</th>
-      <th id="10" nzAlign="right">
+      <th id="10" nzWidth="125px" nzAlign="right">
         <button nz-button (click)="addExpense.handleModalOpenStatus()" nzType="primary"><em nz-icon
             nzType="plus"></em></button>
       </th>
@@ -24,22 +24,19 @@
       <td nzAlign="left">{{ expenseTypeEnum[expense.expenseType] }}</td>
       <td nzAlign="left">{{ expense.paymentInstituition?.name == null ? 'Aguardando pagamento...': expense.paymentInstituition.name }}</td>
       <td nzAlign="left">{{ expense.paymentType?.name == null ? 'Aguardando pagamento...': expense.paymentType.name }}</td>
-      <td nzAlign="left">
-        {{ paymentStatusEnum[expense.paymentStatus] }}
-        <nz-divider nzType="vertical"></nz-divider>
-        <a><em nz-icon nzType="edit"></em></a>
+      <td nzAlign="center">
+        {{ paymentStatusEnum[expense.paymentStatus] }}        
       </td>
       <td nzAlign="left">{{ expense.paymentDate | date: 'dd/MM/yyyy' }}</td>
       <td nzAlign="left">{{ expense.dueDate | date: 'dd/MM/yyyy' }}</td>
       <td nzAlign="right">
-        <a (click)="deleteExpense(expense)"><em class="red" nz-icon nzType="delete"></em></a>
+        <app-view-invoice [expense]="expense"></app-view-invoice>    
         <nz-divider nzType="vertical"></nz-divider>
         <a><em nz-icon nzType="edit"></em></a>
-
+        <nz-divider nzType="vertical"></nz-divider>
+        <app-delete-expense [expense]="expense" (response)="getExpenses()"></app-delete-expense>
       </td>
     </tr>
   </tbody>
 </nz-table>
-<app-add-expense-form (expenseReturn)="addExpensee($event)"></app-add-expense-form>
-<app-add-expense #addExpense></app-add-expense>
-<app-modal [content]="content" #modal></app-modal>
+<app-add-expense #addExpense (response)="getExpenses()"></app-add-expense>

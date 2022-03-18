@@ -16,6 +16,7 @@ export class Expense {
     paymentStatus: PaymentStatus;
     paymentDate: Date;
     dueDate: Date;
+    invoice: string;
 
     constructor(
         name: string,
@@ -26,7 +27,8 @@ export class Expense {
         paymentTypeId: string,
         paymentStatus: PaymentStatus,
         paymentDate: Date,
-        dueDate: Date
+        dueDate: Date,
+        invoice: string
     ) {
         this.name = name;
         this.purchaseDate = purchaseDate;
@@ -36,7 +38,8 @@ export class Expense {
         this.paymentTypeId = paymentTypeId;
         this.paymentStatus = paymentStatus;
         this.paymentDate = paymentDate;
-        this.dueDate = dueDate
+        this.dueDate = dueDate;
+        this.invoice = invoice;
     }
 
     public pay(): void {

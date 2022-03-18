@@ -7,6 +7,7 @@ import { PaymentTypeTableComponent } from './components/payment-type-table/payme
 import { AddPaymentTypeModalComponent } from './components/add-payment-type-modal/add-payment-type-modal.component';
 import { UpdatePaymentTypeComponent } from './components/update-payment-type/update-payment-type.component';
 import { PaymentTypeComponent } from './page/payment-type.component';
+import { DeletePaymentTypeComponent } from './components/delete-payment-type/delete-payment-type.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { PaymentTypeComponent } from './page/payment-type.component';
     PaymentTypeComponent,
     PaymentTypeTableComponent,
     AddPaymentTypeModalComponent,
-    UpdatePaymentTypeComponent
+    UpdatePaymentTypeComponent,
+    DeletePaymentTypeComponent
   ],
   imports: [
     CommonModule,

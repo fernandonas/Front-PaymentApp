@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { IModal } from '@interfaces/modal.interface';
 
 @Component({
@@ -6,9 +7,9 @@ import { IModal } from '@interfaces/modal.interface';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.less']
 })
-
 export class ModalComponent {
   @Input() content: IModal;
+  
   isVisible = false;
   isOkLoading = false;
 

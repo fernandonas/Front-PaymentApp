@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
 import { AddExpenseComponent } from './components/add-expense/add-expense.component';
 import { AddExpenseFormComponent } from './components/add-expense-form/add-expense-form.component';
+import { ViewInvoiceComponent } from './components/view-invoice/view-invoice.component';
+import { DeleteExpenseComponent } from './components/delete-expense/delete-expense.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AddExpenseFormComponent } from './components/add-expense-form/add-expen
     ExpenseComponent,
     ExpenseTableComponent,
     AddExpenseComponent,
-    AddExpenseFormComponent
+    AddExpenseFormComponent,
+    ViewInvoiceComponent,
+    DeleteExpenseComponent
   ],
   imports: [
     CommonModule,

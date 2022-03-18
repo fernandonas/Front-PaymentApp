@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { NzModalService } from 'ng-zorro-antd/modal';
-
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { LoaderHelper } from '@helpers/loader.helper';
@@ -14,15 +12,13 @@ import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
   templateUrl: './payment-type-table.component.html',
   styleUrls: ['./payment-type-table.component.less']
 })
-export class PaymentTypeTableComponent implements OnInit, OnDestroy {
-  subscription: Subscription = new Subscription();
+export class PaymentTypeTableComponent implements OnInit {
   paymentTypes$: Observable<IPaymentTypeResponse[]>;
   loading = new LoaderHelper();
   isAddModalOpen = false;
 
   constructor(
-    private readonly paymentTypeService: PaymentTypeService,
-    private readonly modal: NzModalService
+    private readonly paymentTypeService: PaymentTypeService
   ) { }
 
   ngOnInit(): void {
@@ -38,27 +34,5 @@ export class PaymentTypeTableComponent implements OnInit, OnDestroy {
           return paymentTypes;
         })
       );
-  }
-
-  private deletePaymentType(paymentTypeResponse: IPaymentTypeResponse): void {
-    this.subscription.add(this.paymentTypeService.deletePaymentType(paymentTypeResponse)
-      .subscribe(() => this.getPaymentTypes()));
-  }
-
-  public showDeleteConfirm(paymentTypeResponse: IPaymentTypeResponse): void {
-    this.modal.confirm({
-      nzTitle: `Tem certeza que deseja deletar ${paymentTypeResponse.name}?`,
-      nzContent: '',
-      nzOkText: 'Sim',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => this.deletePaymentType(paymentTypeResponse),
-      nzCancelText: 'Não',
-      nzOnCancel: () => console.log('Cancel')
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

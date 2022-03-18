@@ -13,9 +13,9 @@
       <tr *ngFor="let paymentType of paymentTypeTable.data">
         <td><em nz-icon nzType="credit-card"></em> {{ paymentType.name }}</td>
         <td nzAlign="right">
-          <a (click)="showDeleteConfirm(paymentType)"><em class="red" nz-icon nzType="delete"></em></a>
-          <nz-divider nzType="vertical"></nz-divider>
           <a (click)="updatePaymentModal.handleModalOpenStatus(paymentType)"><em nz-icon nzType="edit"></em></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <app-delete-payment-type [paymentType]="paymentType" (response)="getPaymentTypes()" ></app-delete-payment-type>
         </td>
       </tr>
     </tbody>
