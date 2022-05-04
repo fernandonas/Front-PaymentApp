@@ -2,10 +2,20 @@
   [(nzVisible)]="isVisible"
   nzTitle="Adicionar nova despesa!"
   nzCentered
+  [nzTitle]="modalHeader"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
 >
-  <ng-container *nzModalContent>
+<ng-template #modalHeader>
+  <div>
+    Cadastrar Despesa
+  </div>
+</ng-template>
+  <ng-template #modalContent>
     <app-add-expense-form (expenseReturn)="handleOk()"></app-add-expense-form>
-  </ng-container>
+  </ng-template>
 </nz-modal>
+<ng-template #modalFooter>
+</ng-template>
