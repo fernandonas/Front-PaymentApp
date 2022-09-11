@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { map } from 'rxjs/operators';
-
+import { Subscription } from 'rxjs';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { IExpenseResponse } from '@interfaces/expense.interface';
@@ -12,9 +11,10 @@ import { ExpenseService } from '@services/expense.service';
   templateUrl: './delete-expense.component.html',
   styleUrls: ['./delete-expense.component.less']
 })
-export class DeleteExpenseComponent {
+export class DeleteExpenseComponent implements OnDestroy {
   @Input() expense: IExpenseResponse;
   @Output() response: EventEmitter<any> = new EventEmitter<any>();
+  subscription = new Subscription();
 
   constructor(
     private readonly modal: NzModalService,
@@ -35,10 +35,14 @@ export class DeleteExpenseComponent {
   }
 
   private deleteExpense(): void {
-    this.expenseService.deleteExpense(this.expense).pipe(
+    this.subscription.add(this.expenseService.deleteExpense(this.expense).pipe(
       map(() => {
         this.response.next()
       })
-    ).subscribe();
+    ).subscribe());
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

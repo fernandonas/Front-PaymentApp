@@ -4,8 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 
 import { ExpenseService } from '@services/expense.service';
 import { IExpenseResponse } from '@interfaces/expense.interface';
-import { ExpenseType } from '@enums/expense-type.enum';
 import { PaymentStatus } from '@enums/payment-status.enum';
+import { ExpenseTypeMapper } from '@maps/expense-type-mock.map';
 
 @Component({
   selector: 'app-expense-table',
@@ -16,7 +16,7 @@ export class ExpenseTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   expenses$: Observable<IExpenseResponse[]>;
   paymentStatusEnum = PaymentStatus;
-  expenseTypeEnum = ExpenseType;
+  expenseType = ExpenseTypeMapper;
 
   constructor(
     private readonly expenseService: ExpenseService

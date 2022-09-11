@@ -24,6 +24,16 @@ export const routes: Routes = [
           .then(m => m.ExpenseModule)
       },
       {
+        path: 'receipt',
+        loadChildren: () => import('./modules/receipt/receipt.module')
+          .then(m => m.ReceiptModule)
+      },
+      {
+        path: 'receipt',
+        loadChildren: () => import('./modules/receipt/receipt.module')
+          .then(m => m.ReceiptModule)
+      },
+      {
         path: '',
         loadChildren: () => import('./modules/home/home.module')
           .then(m => m.HomeModule)

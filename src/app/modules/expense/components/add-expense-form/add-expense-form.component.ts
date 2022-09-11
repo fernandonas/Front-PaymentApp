@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { IPaymentInstituitionResponse } from '@interfaces/payment-instituition.interface';
 import { IPaymentTypeResponse } from '@interfaces/payment-type.interface';
@@ -16,7 +15,7 @@ import { ExpenseService } from '@services/expense.service';
   templateUrl: './add-expense-form.component.html',
   styleUrls: ['./add-expense-form.component.less']
 })
-export class AddExpenseFormComponent implements OnInit {
+export class AddExpenseFormComponent implements OnInit, OnDestroy {
   @Output() expenseReturn = new EventEmitter();
 
   paymentInstituitions$: Observable<IPaymentInstituitionResponse[]>;
@@ -25,6 +24,7 @@ export class AddExpenseFormComponent implements OnInit {
   expenseTypeEnum = ExpenseType;
   imageBaseData: string | ArrayBuffer = null;
   fileName = "Nenhum arquivo selecionado.";
+  subscription = new Subscription();
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -75,23 +75,21 @@ export class AddExpenseFormComponent implements OnInit {
       this.expenseForm.controls.dueDate.value,
       this.expenseForm.controls.invoice.value
     );
-    this.expenseService.addExpense(expense).subscribe(() => this.expenseReturn.next());
+    this.subscription.add(this.expenseService.addExpense(expense).subscribe(() => this.expenseReturn.next()));
   }
 
   public handleFileInput(files: any) {
-    console.log("Resultado: files", files);
-    let me = this;
+    let component = this;
     const file = files.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-      console.log(reader.result);
-      me.imageBaseData = reader.result;
+      component.imageBaseData = reader.result;
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
-    this.fileName = "Arquivo carregado!!"
+    component.fileName = "Arquivo carregado!!";
   }
 
   private addImageToForm() {
@@ -112,5 +110,9 @@ export class AddExpenseFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -21,12 +21,14 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { SafePipeUrl } from './pipes/safe-url.pipe';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     StepsComponent,
-    ModalComponent
+    ModalComponent,
+    SafePipeUrl
   ],
   imports: [
     ReactiveFormsModule,
@@ -66,7 +68,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     StepsComponent,
     ModalComponent,
     NavbarComponent,
-    NzFormModule
+    NzFormModule,
+    SafePipeUrl
   ]
 })
 export class SharedModule { }

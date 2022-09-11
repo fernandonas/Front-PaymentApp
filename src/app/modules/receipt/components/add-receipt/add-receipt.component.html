@@ -1,0 +1,43 @@
+<nz-modal
+  nzWidth="90%"
+  [(nzVisible)]="isVisible"
+  nzTitle="Adicionar novo comprovante de pagamento"
+  nzCentered
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzFooter]="modalFooter"
+>
+  <ng-container *nzModalContent>
+    <nz-form nz-form [formGroup]="addReceiptForm" (ngSubmit)="handleOk()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired nzFor="name">Nome</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Preencha o nome do comprovante!">
+            <input nz-input type="text" formControlName="name" id="name" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="value">Enviar comprovante:</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Imforme a Data da compra!">
+            <label for="file">
+                <div class="upload-button">                    
+                    CARREGAR COMPROVANTE
+                </div>
+            </label>
+            <input class="input-file" type="file" id="file" accept="image/png, image/jpeg, application/pdf" (change)="handleFileInput($event)">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">          
+          <a [href]="imageBaseData | safeUrl" download><img style="width: 80px;" [src]="imageBaseData"/></a>
+        </nz-form-control>
+      </nz-form-item>      
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+          <button nz-button nzType="primary" (click)="handleOk()">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-form>
+  </ng-container>
+</nz-modal>
+<ng-template #modalFooter>
+</ng-template>

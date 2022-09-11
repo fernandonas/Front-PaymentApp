@@ -1,0 +1,24 @@
+<nz-table #expense [nzData]="receipt$ | async">
+    <thead>
+        <tr>
+            <th id="1">Despesas</th>
+            <th id="2">Data do Pagamento</th>
+            <th id="3" nzAlign="left">Tipo da despesa</th>
+            <th id="4" nzAlign="left">Tipo de Despesa</th>
+            <th id="10" nzWidth="125px" nzAlign="right">
+                <button nz-button (click)="addReceipt.handleModalOpenStatus()" nzType="primary"><em nz-icon
+                    nzType="plus"></em></button>
+              </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let expense of expense.data">
+            <td><em nz-icon nzType="barcode"></em> {{ expense.name }}</td>
+            <td>{{ expense.paymentDate | date: 'dd/MM/yyyy' }}</td>
+            <td nzAlign="left">{{ expense.dueDate | date: 'dd/MM/yyyy' }}</td>
+            <td nzAlign="left">{{ expenseType.get(expense.expenseType) }}</td>
+            <td nzAlign="left"></td>
+        </tr>
+    </tbody>
+</nz-table>
+<app-add-receipt #addReceipt></app-add-receipt>

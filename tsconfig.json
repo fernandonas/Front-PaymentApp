@@ -38,6 +38,9 @@
       ],
       "@enums/*": [
         "./src/app/modules/shared/enums/*"
+      ],
+      "@maps/*": [
+        "./src/app/modules/shared/maps/*"
       ]
     },
   },

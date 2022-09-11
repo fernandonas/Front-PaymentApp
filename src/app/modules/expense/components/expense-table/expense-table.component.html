@@ -21,7 +21,7 @@
       <td><em nz-icon nzType="barcode"></em> {{ expense.name }}</td>
       <td>{{ expense.purchaseDate | date: 'dd/MM/yyyy' }}</td>
       <td nzAlign="left">{{ expense.amount | currency : 'BRL' }}</td>
-      <td nzAlign="left">{{ expenseTypeEnum[expense.expenseType] }}</td>
+      <td nzAlign="left">{{ expenseType.get(expense.expenseType) }}</td>
       <td nzAlign="left">{{ expense.paymentInstituition?.name == null ? 'Aguardando pagamento...': expense.paymentInstituition.name }}</td>
       <td nzAlign="left">{{ expense.paymentType?.name == null ? 'Aguardando pagamento...': expense.paymentType.name }}</td>
       <td nzAlign="center">
