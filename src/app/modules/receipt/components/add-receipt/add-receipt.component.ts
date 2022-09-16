@@ -14,8 +14,7 @@ export class AddReceiptComponent implements OnInit, OnDestroy {
   isVisible = false;
   addReceiptForm: FormGroup;
   subscription = new Subscription();
-  imageBaseData: string | ArrayBuffer = null;
-  fileName = '';
+  fileName = 'CARREGAR COMPROVANTE';
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -29,7 +28,8 @@ export class AddReceiptComponent implements OnInit, OnDestroy {
   private createForm(): void {
     this.addReceiptForm = this.formBuilder.group({
       name: [null, Validators.required],
-      value: [null, Validators.required]
+      value: [null, Validators.required],
+      paymentDate: [null, Validators.required]
     });
   }
 
@@ -43,20 +43,18 @@ export class AddReceiptComponent implements OnInit, OnDestroy {
   }
 
   public handleOk(): void {
-    debugger
-    this.addImageToForm();
+    this.validateForm();
     if (this.addReceiptForm.valid) {
       this.addReceipt();
       return;
     }
     this.isVisible = true;
   }
-  
+
   private addReceipt(): void {
     this.subscription.add(this.receiptService.addReceipt(this.addReceiptForm.value).subscribe({
       next: () => {
-        debugger
-        this.addReceiptForm.reset();
+        this.resetForm();
         this.isVisible = false;
       },
       error: (error: HttpErrorResponse) => {
@@ -65,14 +63,18 @@ export class AddReceiptComponent implements OnInit, OnDestroy {
     }));
   }
 
-  submitForm(): void {
+  private resetForm(): void {
+    this.fileName = 'CARREGAR COMPROVANTE';
+    this.addReceiptForm.reset();
+  }
+
+  private validateForm(): void {
     Object.values(this.addReceiptForm.controls).forEach(control => {
       if (control.invalid) {
         control.markAsDirty();
         control.updateValueAndValidity({ onlySelf: true });
       }
     });
-    this.isVisible = false;
   }
 
   public handleFileInput(files: any) {
@@ -80,19 +82,13 @@ export class AddReceiptComponent implements OnInit, OnDestroy {
     const file = files.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function () {
-      component.imageBaseData = reader.result;
+    reader.onload = () => {
+      component.addReceiptForm.controls.value.setValue(reader.result);
     };
-    reader.onerror = function (error) {
+    reader.onerror = (error) => {
       console.log('Error: ', error);
     };
-    component.fileName = "Arquivo carregado!!";
-  }
-
-  private addImageToForm() {
-    if (this.imageBaseData !== null) {
-      this.addReceiptForm.controls.value.setValue(this.imageBaseData.toString());
-    }
+    component.fileName = file.name;
   }
 
   ngOnDestroy(): void {
